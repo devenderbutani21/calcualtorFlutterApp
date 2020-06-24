@@ -30,36 +30,30 @@ class _MyCalcPageState extends State<MyCalcPage>{
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: Colors.black,
         body: Column(
           children: <Widget>[
               SizedBox(height: 40,),
               Container(
                 height: 300,
-                child: TextFormField(
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black)
-                    ),
-                  ),
-                ),
               ),
             Container(
               child: Row(
                 children: <Widget>[
                   FlatButton(
-                    child: Text('%'),
+                    child: Text('%', style: TextStyle(color: Colors.white, fontSize: 26),),
                     onPressed: () { },
                   ),
                   FlatButton(
-                    child: Text('('),
+                    child: Text('(', style: TextStyle(color: Colors.white, fontSize: 26),),
                     onPressed: () { },
                   ),
                   FlatButton(
-                    child: Text(')'),
+                    child: Text(')', style: TextStyle(color: Colors.white, fontSize: 26),),
                     onPressed: () { },
                   ),
                   FlatButton(
-                    child: Text('/'),
+                    child: Text('/', style: TextStyle(color: Colors.white, fontSize: 26),),
                     onPressed: () { },
                   ),
                 ],
@@ -68,39 +62,19 @@ class _MyCalcPageState extends State<MyCalcPage>{
             Row(
               children: <Widget>[
                 FlatButton(
-                  child: Text('7'),
+                  child: Text('7', style: TextStyle(color: Colors.white, fontSize: 26),),
                   onPressed: () { },
                 ),
                 FlatButton(
-                  child: Text('8'),
+                  child: Text('8', style: TextStyle(color: Colors.white, fontSize: 26),),
                   onPressed: () { },
                 ),
                 FlatButton(
-                  child: Text('9'),
+                  child: Text('9', style: TextStyle(color: Colors.white, fontSize: 26),),
                   onPressed: () { },
                 ),
                 FlatButton(
-                  child: Text('X'),
-                  onPressed: () { },
-                ),
-              ],
-            ),
-            Row(
-              children: <Widget>[
-                FlatButton(
-                  child: Text('4'),
-                  onPressed: () { },
-                ),
-                FlatButton(
-                  child: Text('5'),
-                  onPressed: () { },
-                ),
-                FlatButton(
-                  child: Text('6'),
-                  onPressed: () { },
-                ),
-                FlatButton(
-                  child: Text('-'),
+                  child: Text('X', style: TextStyle(color: Colors.white, fontSize: 26),),
                   onPressed: () { },
                 ),
               ],
@@ -108,19 +82,19 @@ class _MyCalcPageState extends State<MyCalcPage>{
             Row(
               children: <Widget>[
                 FlatButton(
-                  child: Text('1'),
+                  child: Text('4', style: TextStyle(color: Colors.white, fontSize: 26),),
                   onPressed: () { },
                 ),
                 FlatButton(
-                  child: Text('2'),
+                  child: Text('5', style: TextStyle(color: Colors.white, fontSize: 26),),
                   onPressed: () { },
                 ),
                 FlatButton(
-                  child: Text('3'),
+                  child: Text('6', style: TextStyle(color: Colors.white, fontSize: 26),),
                   onPressed: () { },
                 ),
                 FlatButton(
-                  child: Text('+'),
+                  child: Text('-', style: TextStyle(color: Colors.white, fontSize: 26),),
                   onPressed: () { },
                 ),
               ],
@@ -128,19 +102,39 @@ class _MyCalcPageState extends State<MyCalcPage>{
             Row(
               children: <Widget>[
                 FlatButton(
-                  child: Text('+/-'),
+                  child: Text('1', style: TextStyle(color: Colors.white, fontSize: 26),),
                   onPressed: () { },
                 ),
                 FlatButton(
-                  child: Text('0'),
+                  child: Text('2', style: TextStyle(color: Colors.white, fontSize: 26),),
                   onPressed: () { },
                 ),
                 FlatButton(
-                  child: Text('.'),
+                  child: Text('3', style: TextStyle(color: Colors.white, fontSize: 26),),
                   onPressed: () { },
                 ),
                 FlatButton(
-                  child: Text('='),
+                  child: Text('+', style: TextStyle(color: Colors.white, fontSize: 26),),
+                  onPressed: () { },
+                ),
+              ],
+            ),
+            Row(
+              children: <Widget>[
+                FlatButton(
+                  child: Text('+/-', style: TextStyle(color: Colors.white, fontSize: 26),),
+                  onPressed: () { },
+                ),
+                FlatButton(
+                  child: Text('0', style: TextStyle(color: Colors.white, fontSize: 26),),
+                  onPressed: () { },
+                ),
+                FlatButton(
+                  child: Text('.', style: TextStyle(color: Colors.white, fontSize: 26),),
+                  onPressed: () { },
+                ),
+                FlatButton(
+                  child: Text('=', style: TextStyle(color: Colors.white, fontSize: 26),),
                   onPressed: () { },
                 ),
               ],
