@@ -33,110 +33,247 @@ class _MyCalcPageState extends State<MyCalcPage>{
         backgroundColor: Colors.black,
         body: Column(
           children: <Widget>[
-              SizedBox(height: 40,),
-              Container(
-                height: 300,
-              ),
+            Container(
+              height: 200,
+            ),
             Container(
               child: Row(
                 children: <Widget>[
-                  FlatButton(
-                    child: Text('%', style: TextStyle(color: Colors.white, fontSize: 26),),
-                    onPressed: () { },
+                  RawMaterialButton(
+                    child: Text('AC',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 26),),
+                    onPressed: () {},
+                    elevation: 2.0,
+                    fillColor: Colors.grey,
+                    padding: EdgeInsets.all(17.5),
+                    shape: CircleBorder(),
                   ),
-                  FlatButton(
-                    child: Text('(', style: TextStyle(color: Colors.white, fontSize: 26),),
-                    onPressed: () { },
+                  RawMaterialButton(
+                    child: Text('+/-',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 26),),
+                    onPressed: () {},
+                    elevation: 2.0,
+                    fillColor: Colors.grey,
+                    padding: EdgeInsets.all(17.5),
+                    shape: CircleBorder(),
                   ),
-                  FlatButton(
-                    child: Text(')', style: TextStyle(color: Colors.white, fontSize: 26),),
-                    onPressed: () { },
+                  RawMaterialButton(
+                    child: Text('%',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 26),),
+                    onPressed: () {},
+                    elevation: 2.0,
+                    fillColor: Colors.grey,
+                    padding: EdgeInsets.all(17.5),
+                    shape: CircleBorder(),
                   ),
-                  FlatButton(
-                    child: Text('/', style: TextStyle(color: Colors.white, fontSize: 26),),
-                    onPressed: () { },
-                  ),
+                  RawMaterialButton(
+                    child: Text('÷',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 26),),
+                    onPressed: () {},
+                    elevation: 2.0,
+                    fillColor: Colors.orange,
+                    padding: EdgeInsets.all(17.5),
+                    shape: CircleBorder(),
+                  )
                 ],
               ),
             ),
+            SizedBox(height: 20,),
             Row(
               children: <Widget>[
-                FlatButton(
-                  child: Text('7', style: TextStyle(color: Colors.white, fontSize: 26),),
-                  onPressed: () { },
+                RawMaterialButton(
+                  child: Text('7',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 26),),
+                  onPressed: () {},
+                  elevation: 2.0,
+                  fillColor: Colors.grey,
+                  padding: EdgeInsets.all(17.5),
+                  shape: CircleBorder(),
                 ),
-                FlatButton(
-                  child: Text('8', style: TextStyle(color: Colors.white, fontSize: 26),),
-                  onPressed: () { },
+                RawMaterialButton(
+                  child: Text('8',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 26),),
+                  onPressed: () {},
+                  elevation: 2.0,
+                  fillColor: Colors.grey,
+                  padding: EdgeInsets.all(17.5),
+                  shape: CircleBorder(),
                 ),
-                FlatButton(
-                  child: Text('9', style: TextStyle(color: Colors.white, fontSize: 26),),
-                  onPressed: () { },
+                RawMaterialButton(
+                  child: Text('9',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 26),),
+                  onPressed: () {},
+                  elevation: 2.0,
+                  fillColor: Colors.grey,
+                  padding: EdgeInsets.all(17.5),
+                  shape: CircleBorder(),
                 ),
-                FlatButton(
-                  child: Text('X', style: TextStyle(color: Colors.white, fontSize: 26),),
-                  onPressed: () { },
+                RawMaterialButton(
+                  child: Text('×',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 26),),
+                  onPressed: () {},
+                  elevation: 2.0,
+                  fillColor: Colors.orange,
+                  padding: EdgeInsets.all(17.5),
+                  shape: CircleBorder(),
                 ),
               ],
             ),
+            SizedBox(height: 20,),
             Row(
               children: <Widget>[
-                FlatButton(
-                  child: Text('4', style: TextStyle(color: Colors.white, fontSize: 26),),
-                  onPressed: () { },
+                RawMaterialButton(
+                  child: Text('4',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 26),),
+                  onPressed: () {},
+                  elevation: 2.0,
+                  fillColor: Colors.grey,
+                  padding: EdgeInsets.all(17.5),
+                  shape: CircleBorder(),
                 ),
-                FlatButton(
-                  child: Text('5', style: TextStyle(color: Colors.white, fontSize: 26),),
-                  onPressed: () { },
+                RawMaterialButton(
+                  child: Text('5',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 26),),
+                  onPressed: () {},
+                  elevation: 2.0,
+                  fillColor: Colors.grey,
+                  padding: EdgeInsets.all(17.5),
+                  shape: CircleBorder(),
                 ),
-                FlatButton(
-                  child: Text('6', style: TextStyle(color: Colors.white, fontSize: 26),),
-                  onPressed: () { },
+                RawMaterialButton(
+                  child: Text('6',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 26),),
+                  onPressed: () {},
+                  elevation: 2.0,
+                  fillColor: Colors.grey,
+                  padding: EdgeInsets.all(17.5),
+                  shape: CircleBorder(),
                 ),
-                FlatButton(
-                  child: Text('-', style: TextStyle(color: Colors.white, fontSize: 26),),
-                  onPressed: () { },
+                RawMaterialButton(
+                  child: Text('-',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 26),),
+                  onPressed: () {},
+                  elevation: 2.0,
+                  fillColor: Colors.orange,
+                  padding: EdgeInsets.all(17.5),
+                  shape: CircleBorder(),
                 ),
               ],
             ),
+            SizedBox(height: 20,),
             Row(
               children: <Widget>[
-                FlatButton(
-                  child: Text('1', style: TextStyle(color: Colors.white, fontSize: 26),),
-                  onPressed: () { },
+                RawMaterialButton(
+                  child: Text('1',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 26),),
+                  onPressed: () {},
+                  elevation: 2.0,
+                  fillColor: Colors.grey,
+                  padding: EdgeInsets.all(17.5),
+                  shape: CircleBorder(),
                 ),
-                FlatButton(
-                  child: Text('2', style: TextStyle(color: Colors.white, fontSize: 26),),
-                  onPressed: () { },
+                RawMaterialButton(
+                  child: Text('2',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 26),),
+                  onPressed: () {},
+                  elevation: 2.0,
+                  fillColor: Colors.grey,
+                  padding: EdgeInsets.all(17.5),
+                  shape: CircleBorder(),
                 ),
-                FlatButton(
-                  child: Text('3', style: TextStyle(color: Colors.white, fontSize: 26),),
-                  onPressed: () { },
+                RawMaterialButton(
+                  child: Text('3',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 26),),
+                  onPressed: () {},
+                  elevation: 2.0,
+                  fillColor: Colors.grey,
+                  padding: EdgeInsets.all(17.5),
+                  shape: CircleBorder(),
                 ),
-                FlatButton(
-                  child: Text('+', style: TextStyle(color: Colors.white, fontSize: 26),),
-                  onPressed: () { },
-                ),
+                RawMaterialButton(
+                  child: Text('+',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 26),),
+                  onPressed: () {},
+                  elevation: 2.0,
+                  fillColor: Colors.orange,
+                  padding: EdgeInsets.all(17.5),
+                  shape: CircleBorder(),
+                )
               ],
             ),
+            SizedBox(height: 20,),
             Row(
               children: <Widget>[
-                FlatButton(
-                  child: Text('+/-', style: TextStyle(color: Colors.white, fontSize: 26),),
-                  onPressed: () { },
+                Container(
+                  width: 175,
+                  child: RawMaterialButton(
+                    child: Text('0',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 26),),
+                    onPressed: () {},
+                    elevation: 2.0,
+                    fillColor: Colors.grey,
+                    padding: EdgeInsets.all(17.5),
+                    shape: RoundedRectangleBorder(
+                        borderRadius:BorderRadius.circular(36.0)
+                    ),
+                  ),
                 ),
-                FlatButton(
-                  child: Text('0', style: TextStyle(color: Colors.white, fontSize: 26),),
-                  onPressed: () { },
+                RawMaterialButton(
+                  child: Text('.',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 26),),
+                  onPressed: () {},
+                  elevation: 2.0,
+                  fillColor: Colors.grey,
+                  padding: EdgeInsets.all(17.5),
+                  shape: CircleBorder(),
                 ),
-                FlatButton(
-                  child: Text('.', style: TextStyle(color: Colors.white, fontSize: 26),),
-                  onPressed: () { },
-                ),
-                FlatButton(
-                  child: Text('=', style: TextStyle(color: Colors.white, fontSize: 26),),
-                  onPressed: () { },
-                ),
+                RawMaterialButton(
+                  child: Text('=',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 26),),
+                  onPressed: () {},
+                  elevation: 2.0,
+                  fillColor: Colors.orange,
+                  padding: EdgeInsets.all(17.5),
+                  shape: CircleBorder(),
+                )
               ],
             ),
           ],
