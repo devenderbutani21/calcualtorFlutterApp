@@ -20,12 +20,13 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyCalcPage extends StatefulWidget{
+class MyCalcPage extends StatefulWidget {
   @override
   _MyCalcPageState createState() => _MyCalcPageState();
 }
 
-class _MyCalcPageState extends State<MyCalcPage>{
+class _MyCalcPageState extends State<MyCalcPage> {
+  var ansStr = '0';
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -34,17 +35,78 @@ class _MyCalcPageState extends State<MyCalcPage>{
         body: Column(
           children: <Widget>[
             Container(
-              height: 200,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment
+                    .spaceEvenly, // Equal vertical space between all the children of column
+                children: <Widget>[
+                  // the column widget uses the children property
+                  Container(
+                    margin: const EdgeInsets.only(right: 40.0),
+                    // Display Container
+                    constraints: BoxConstraints.expand(
+                      // Creating a boxed container
+                      height:
+                          Theme.of(context).textTheme.display1.fontSize * 1.1 +
+                              170.0,
+                    ),
+                    alignment: Alignment
+                        .bottomRight, // Aligning the text to the bottom right of our display screen
+                    color: Colors
+                        .black, // Setting the background color of the container
+                    child: Text(
+                      ansStr,
+                      style: TextStyle(
+                          // Styling the text
+                          fontSize: 50.0,
+                          color: Colors.white),
+                      textAlign: TextAlign.right,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 20,
             ),
             Container(
-              margin: const EdgeInsets.only(left: 20.0),
+              margin: const EdgeInsets.only(left: 40.0),
               child: Row(
                 children: <Widget>[
                   RawMaterialButton(
-                    child: Text('AC',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 26),),
+                    child: Text(
+                      'AC',
+                      style: TextStyle(color: Colors.white, fontSize: 26),
+                    ),
+                    onPressed: () {
+                      setState(() {
+                          ansStr = "0";
+                      });
+                    },
+                    elevation: 2.0,
+                    fillColor: Colors.grey,
+                    padding: EdgeInsets.all(17.5),
+                    shape: CircleBorder(),
+                  ),
+                  RawMaterialButton(
+                    child: Text(
+                      '+/-',
+                      style: TextStyle(color: Colors.white, fontSize: 26),
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        ansStr = "-" + ansStr;
+                      });
+                    },
+                    elevation: 2.0,
+                    fillColor: Colors.grey,
+                    padding: EdgeInsets.all(17.5),
+                    shape: CircleBorder(),
+                  ),
+                  RawMaterialButton(
+                    child: Text(
+                      '%',
+                      style: TextStyle(color: Colors.white, fontSize: 26),
+                    ),
                     onPressed: () {},
                     elevation: 2.0,
                     fillColor: Colors.grey,
@@ -52,32 +114,10 @@ class _MyCalcPageState extends State<MyCalcPage>{
                     shape: CircleBorder(),
                   ),
                   RawMaterialButton(
-                    child: Text('+/-',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 26),),
-                    onPressed: () {},
-                    elevation: 2.0,
-                    fillColor: Colors.grey,
-                    padding: EdgeInsets.all(17.5),
-                    shape: CircleBorder(),
-                  ),
-                  RawMaterialButton(
-                    child: Text('%',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 26),),
-                    onPressed: () {},
-                    elevation: 2.0,
-                    fillColor: Colors.grey,
-                    padding: EdgeInsets.all(17.5),
-                    shape: CircleBorder(),
-                  ),
-                  RawMaterialButton(
-                    child: Text('÷',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 26),),
+                    child: Text(
+                      '÷',
+                      style: TextStyle(color: Colors.white, fontSize: 26),
+                    ),
                     onPressed: () {},
                     elevation: 2.0,
                     fillColor: Colors.orange,
@@ -87,49 +127,63 @@ class _MyCalcPageState extends State<MyCalcPage>{
                 ],
               ),
             ),
-            SizedBox(height: 20,),
+            SizedBox(
+              height: 20,
+            ),
             Container(
-              margin: const EdgeInsets.only(left: 20.0),
+              margin: const EdgeInsets.only(left: 40.0),
               child: Row(
                 children: <Widget>[
                   RawMaterialButton(
-                    child: Text('7',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 26),),
-                    onPressed: () {},
+                    child: Text(
+                      '7',
+                      style: TextStyle(color: Colors.white, fontSize: 26),
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        ansStr = "7";
+                      });
+                    },
                     elevation: 2.0,
                     fillColor: Colors.grey,
                     padding: EdgeInsets.all(17.5),
                     shape: CircleBorder(),
                   ),
                   RawMaterialButton(
-                    child: Text('8',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 26),),
-                    onPressed: () {},
+                    child: Text(
+                      '8',
+                      style: TextStyle(color: Colors.white, fontSize: 26),
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        ansStr = "8";
+                      });
+                    },
                     elevation: 2.0,
                     fillColor: Colors.grey,
                     padding: EdgeInsets.all(17.5),
                     shape: CircleBorder(),
                   ),
                   RawMaterialButton(
-                    child: Text('9',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 26),),
-                    onPressed: () {},
+                    child: Text(
+                      '9',
+                      style: TextStyle(color: Colors.white, fontSize: 26),
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        ansStr = "9";
+                      });
+                    },
                     elevation: 2.0,
                     fillColor: Colors.grey,
                     padding: EdgeInsets.all(17.5),
                     shape: CircleBorder(),
                   ),
                   RawMaterialButton(
-                    child: Text('×',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 26),),
+                    child: Text(
+                      '×',
+                      style: TextStyle(color: Colors.white, fontSize: 26),
+                    ),
                     onPressed: () {},
                     elevation: 2.0,
                     fillColor: Colors.orange,
@@ -139,49 +193,63 @@ class _MyCalcPageState extends State<MyCalcPage>{
                 ],
               ),
             ),
-            SizedBox(height: 20,),
+            SizedBox(
+              height: 20,
+            ),
             Container(
-              margin: const EdgeInsets.only(left: 20.0),
+              margin: const EdgeInsets.only(left: 40.0),
               child: Row(
                 children: <Widget>[
                   RawMaterialButton(
-                    child: Text('4',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 26),),
-                    onPressed: () {},
+                    child: Text(
+                      '4',
+                      style: TextStyle(color: Colors.white, fontSize: 26),
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        ansStr = "4";
+                      });
+                    },
                     elevation: 2.0,
                     fillColor: Colors.grey,
                     padding: EdgeInsets.all(17.5),
                     shape: CircleBorder(),
                   ),
                   RawMaterialButton(
-                    child: Text('5',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 26),),
-                    onPressed: () {},
+                    child: Text(
+                      '5',
+                      style: TextStyle(color: Colors.white, fontSize: 26),
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        ansStr = "5";
+                      });
+                    },
                     elevation: 2.0,
                     fillColor: Colors.grey,
                     padding: EdgeInsets.all(17.5),
                     shape: CircleBorder(),
                   ),
                   RawMaterialButton(
-                    child: Text('6',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 26),),
-                    onPressed: () {},
+                    child: Text(
+                      '6',
+                      style: TextStyle(color: Colors.white, fontSize: 26),
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        ansStr = "6";
+                      });
+                    },
                     elevation: 2.0,
                     fillColor: Colors.grey,
                     padding: EdgeInsets.all(17.5),
                     shape: CircleBorder(),
                   ),
                   RawMaterialButton(
-                    child: Text('-',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 26),),
+                    child: Text(
+                      '-',
+                      style: TextStyle(color: Colors.white, fontSize: 26),
+                    ),
                     onPressed: () {},
                     elevation: 2.0,
                     fillColor: Colors.orange,
@@ -191,49 +259,63 @@ class _MyCalcPageState extends State<MyCalcPage>{
                 ],
               ),
             ),
-            SizedBox(height: 20,),
+            SizedBox(
+              height: 20,
+            ),
             Container(
-              margin: const EdgeInsets.only(left: 20.0),
+              margin: const EdgeInsets.only(left: 40.0),
               child: Row(
                 children: <Widget>[
                   RawMaterialButton(
-                    child: Text('1',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 26),),
-                    onPressed: () {},
+                    child: Text(
+                      '1',
+                      style: TextStyle(color: Colors.white, fontSize: 26),
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        ansStr = "1";
+                      });
+                    },
                     elevation: 2.0,
                     fillColor: Colors.grey,
                     padding: EdgeInsets.all(17.5),
                     shape: CircleBorder(),
                   ),
                   RawMaterialButton(
-                    child: Text('2',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 26),),
-                    onPressed: () {},
+                    child: Text(
+                      '2',
+                      style: TextStyle(color: Colors.white, fontSize: 26),
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        ansStr = "2";
+                      });
+                    },
                     elevation: 2.0,
                     fillColor: Colors.grey,
                     padding: EdgeInsets.all(17.5),
                     shape: CircleBorder(),
                   ),
                   RawMaterialButton(
-                    child: Text('3',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 26),),
-                    onPressed: () {},
+                    child: Text(
+                      '3',
+                      style: TextStyle(color: Colors.white, fontSize: 26),
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        ansStr = "3";
+                      });
+                    },
                     elevation: 2.0,
                     fillColor: Colors.grey,
                     padding: EdgeInsets.all(17.5),
                     shape: CircleBorder(),
                   ),
                   RawMaterialButton(
-                    child: Text('+',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 26),),
+                    child: Text(
+                      '+',
+                      style: TextStyle(color: Colors.white, fontSize: 26),
+                    ),
                     onPressed: () {},
                     elevation: 2.0,
                     fillColor: Colors.orange,
@@ -243,32 +325,37 @@ class _MyCalcPageState extends State<MyCalcPage>{
                 ],
               ),
             ),
-            SizedBox(height: 20,),
+            SizedBox(
+              height: 20,
+            ),
             Container(
-              margin: const EdgeInsets.only(left: 20.0),
+              margin: const EdgeInsets.only(left: 40.0),
               child: Row(
                 children: <Widget>[
                   Container(
                     width: 175,
                     child: RawMaterialButton(
-                      child: Text('0',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 26),),
-                      onPressed: () {},
+                      child: Text(
+                        '0',
+                        style: TextStyle(color: Colors.white, fontSize: 26),
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          ansStr = "0";
+                        });
+                      },
                       elevation: 2.0,
                       fillColor: Colors.grey,
                       padding: EdgeInsets.all(17.5),
                       shape: RoundedRectangleBorder(
-                          borderRadius:BorderRadius.circular(36.0)
-                      ),
+                          borderRadius: BorderRadius.circular(36.0)),
                     ),
                   ),
                   RawMaterialButton(
-                    child: Text('.',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 26),),
+                    child: Text(
+                      '.',
+                      style: TextStyle(color: Colors.white, fontSize: 26),
+                    ),
                     onPressed: () {},
                     elevation: 2.0,
                     fillColor: Colors.grey,
@@ -276,10 +363,10 @@ class _MyCalcPageState extends State<MyCalcPage>{
                     shape: CircleBorder(),
                   ),
                   RawMaterialButton(
-                    child: Text('=',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 26),),
+                    child: Text(
+                      '=',
+                      style: TextStyle(color: Colors.white, fontSize: 26),
+                    ),
                     onPressed: () {},
                     elevation: 2.0,
                     fillColor: Colors.orange,
