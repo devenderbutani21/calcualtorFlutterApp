@@ -37,6 +37,7 @@ class _MyCalcPageState extends State<MyCalcPage>{
               height: 200,
             ),
             Container(
+              margin: const EdgeInsets.only(left: 20.0),
               child: Row(
                 children: <Widget>[
                   RawMaterialButton(
@@ -87,159 +88,12 @@ class _MyCalcPageState extends State<MyCalcPage>{
               ),
             ),
             SizedBox(height: 20,),
-            Row(
-              children: <Widget>[
-                RawMaterialButton(
-                  child: Text('7',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 26),),
-                  onPressed: () {},
-                  elevation: 2.0,
-                  fillColor: Colors.grey,
-                  padding: EdgeInsets.all(17.5),
-                  shape: CircleBorder(),
-                ),
-                RawMaterialButton(
-                  child: Text('8',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 26),),
-                  onPressed: () {},
-                  elevation: 2.0,
-                  fillColor: Colors.grey,
-                  padding: EdgeInsets.all(17.5),
-                  shape: CircleBorder(),
-                ),
-                RawMaterialButton(
-                  child: Text('9',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 26),),
-                  onPressed: () {},
-                  elevation: 2.0,
-                  fillColor: Colors.grey,
-                  padding: EdgeInsets.all(17.5),
-                  shape: CircleBorder(),
-                ),
-                RawMaterialButton(
-                  child: Text('×',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 26),),
-                  onPressed: () {},
-                  elevation: 2.0,
-                  fillColor: Colors.orange,
-                  padding: EdgeInsets.all(17.5),
-                  shape: CircleBorder(),
-                ),
-              ],
-            ),
-            SizedBox(height: 20,),
-            Row(
-              children: <Widget>[
-                RawMaterialButton(
-                  child: Text('4',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 26),),
-                  onPressed: () {},
-                  elevation: 2.0,
-                  fillColor: Colors.grey,
-                  padding: EdgeInsets.all(17.5),
-                  shape: CircleBorder(),
-                ),
-                RawMaterialButton(
-                  child: Text('5',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 26),),
-                  onPressed: () {},
-                  elevation: 2.0,
-                  fillColor: Colors.grey,
-                  padding: EdgeInsets.all(17.5),
-                  shape: CircleBorder(),
-                ),
-                RawMaterialButton(
-                  child: Text('6',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 26),),
-                  onPressed: () {},
-                  elevation: 2.0,
-                  fillColor: Colors.grey,
-                  padding: EdgeInsets.all(17.5),
-                  shape: CircleBorder(),
-                ),
-                RawMaterialButton(
-                  child: Text('-',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 26),),
-                  onPressed: () {},
-                  elevation: 2.0,
-                  fillColor: Colors.orange,
-                  padding: EdgeInsets.all(17.5),
-                  shape: CircleBorder(),
-                ),
-              ],
-            ),
-            SizedBox(height: 20,),
-            Row(
-              children: <Widget>[
-                RawMaterialButton(
-                  child: Text('1',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 26),),
-                  onPressed: () {},
-                  elevation: 2.0,
-                  fillColor: Colors.grey,
-                  padding: EdgeInsets.all(17.5),
-                  shape: CircleBorder(),
-                ),
-                RawMaterialButton(
-                  child: Text('2',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 26),),
-                  onPressed: () {},
-                  elevation: 2.0,
-                  fillColor: Colors.grey,
-                  padding: EdgeInsets.all(17.5),
-                  shape: CircleBorder(),
-                ),
-                RawMaterialButton(
-                  child: Text('3',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 26),),
-                  onPressed: () {},
-                  elevation: 2.0,
-                  fillColor: Colors.grey,
-                  padding: EdgeInsets.all(17.5),
-                  shape: CircleBorder(),
-                ),
-                RawMaterialButton(
-                  child: Text('+',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 26),),
-                  onPressed: () {},
-                  elevation: 2.0,
-                  fillColor: Colors.orange,
-                  padding: EdgeInsets.all(17.5),
-                  shape: CircleBorder(),
-                )
-              ],
-            ),
-            SizedBox(height: 20,),
-            Row(
-              children: <Widget>[
-                Container(
-                  width: 175,
-                  child: RawMaterialButton(
-                    child: Text('0',
+            Container(
+              margin: const EdgeInsets.only(left: 20.0),
+              child: Row(
+                children: <Widget>[
+                  RawMaterialButton(
+                    child: Text('7',
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 26),),
@@ -247,34 +101,193 @@ class _MyCalcPageState extends State<MyCalcPage>{
                     elevation: 2.0,
                     fillColor: Colors.grey,
                     padding: EdgeInsets.all(17.5),
-                    shape: RoundedRectangleBorder(
-                        borderRadius:BorderRadius.circular(36.0)
+                    shape: CircleBorder(),
+                  ),
+                  RawMaterialButton(
+                    child: Text('8',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 26),),
+                    onPressed: () {},
+                    elevation: 2.0,
+                    fillColor: Colors.grey,
+                    padding: EdgeInsets.all(17.5),
+                    shape: CircleBorder(),
+                  ),
+                  RawMaterialButton(
+                    child: Text('9',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 26),),
+                    onPressed: () {},
+                    elevation: 2.0,
+                    fillColor: Colors.grey,
+                    padding: EdgeInsets.all(17.5),
+                    shape: CircleBorder(),
+                  ),
+                  RawMaterialButton(
+                    child: Text('×',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 26),),
+                    onPressed: () {},
+                    elevation: 2.0,
+                    fillColor: Colors.orange,
+                    padding: EdgeInsets.all(17.5),
+                    shape: CircleBorder(),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(height: 20,),
+            Container(
+              margin: const EdgeInsets.only(left: 20.0),
+              child: Row(
+                children: <Widget>[
+                  RawMaterialButton(
+                    child: Text('4',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 26),),
+                    onPressed: () {},
+                    elevation: 2.0,
+                    fillColor: Colors.grey,
+                    padding: EdgeInsets.all(17.5),
+                    shape: CircleBorder(),
+                  ),
+                  RawMaterialButton(
+                    child: Text('5',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 26),),
+                    onPressed: () {},
+                    elevation: 2.0,
+                    fillColor: Colors.grey,
+                    padding: EdgeInsets.all(17.5),
+                    shape: CircleBorder(),
+                  ),
+                  RawMaterialButton(
+                    child: Text('6',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 26),),
+                    onPressed: () {},
+                    elevation: 2.0,
+                    fillColor: Colors.grey,
+                    padding: EdgeInsets.all(17.5),
+                    shape: CircleBorder(),
+                  ),
+                  RawMaterialButton(
+                    child: Text('-',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 26),),
+                    onPressed: () {},
+                    elevation: 2.0,
+                    fillColor: Colors.orange,
+                    padding: EdgeInsets.all(17.5),
+                    shape: CircleBorder(),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(height: 20,),
+            Container(
+              margin: const EdgeInsets.only(left: 20.0),
+              child: Row(
+                children: <Widget>[
+                  RawMaterialButton(
+                    child: Text('1',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 26),),
+                    onPressed: () {},
+                    elevation: 2.0,
+                    fillColor: Colors.grey,
+                    padding: EdgeInsets.all(17.5),
+                    shape: CircleBorder(),
+                  ),
+                  RawMaterialButton(
+                    child: Text('2',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 26),),
+                    onPressed: () {},
+                    elevation: 2.0,
+                    fillColor: Colors.grey,
+                    padding: EdgeInsets.all(17.5),
+                    shape: CircleBorder(),
+                  ),
+                  RawMaterialButton(
+                    child: Text('3',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 26),),
+                    onPressed: () {},
+                    elevation: 2.0,
+                    fillColor: Colors.grey,
+                    padding: EdgeInsets.all(17.5),
+                    shape: CircleBorder(),
+                  ),
+                  RawMaterialButton(
+                    child: Text('+',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 26),),
+                    onPressed: () {},
+                    elevation: 2.0,
+                    fillColor: Colors.orange,
+                    padding: EdgeInsets.all(17.5),
+                    shape: CircleBorder(),
+                  )
+                ],
+              ),
+            ),
+            SizedBox(height: 20,),
+            Container(
+              margin: const EdgeInsets.only(left: 20.0),
+              child: Row(
+                children: <Widget>[
+                  Container(
+                    width: 175,
+                    child: RawMaterialButton(
+                      child: Text('0',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 26),),
+                      onPressed: () {},
+                      elevation: 2.0,
+                      fillColor: Colors.grey,
+                      padding: EdgeInsets.all(17.5),
+                      shape: RoundedRectangleBorder(
+                          borderRadius:BorderRadius.circular(36.0)
+                      ),
                     ),
                   ),
-                ),
-                RawMaterialButton(
-                  child: Text('.',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 26),),
-                  onPressed: () {},
-                  elevation: 2.0,
-                  fillColor: Colors.grey,
-                  padding: EdgeInsets.all(17.5),
-                  shape: CircleBorder(),
-                ),
-                RawMaterialButton(
-                  child: Text('=',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 26),),
-                  onPressed: () {},
-                  elevation: 2.0,
-                  fillColor: Colors.orange,
-                  padding: EdgeInsets.all(17.5),
-                  shape: CircleBorder(),
-                )
-              ],
+                  RawMaterialButton(
+                    child: Text('.',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 26),),
+                    onPressed: () {},
+                    elevation: 2.0,
+                    fillColor: Colors.grey,
+                    padding: EdgeInsets.all(17.5),
+                    shape: CircleBorder(),
+                  ),
+                  RawMaterialButton(
+                    child: Text('=',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 26),),
+                    onPressed: () {},
+                    elevation: 2.0,
+                    fillColor: Colors.orange,
+                    padding: EdgeInsets.all(17.5),
+                    shape: CircleBorder(),
+                  )
+                ],
+              ),
             ),
           ],
         ),
