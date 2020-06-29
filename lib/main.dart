@@ -402,7 +402,11 @@ class _MyCalcPageState extends State<MyCalcPage> {
                     ),
                     onPressed: () {
                       setState(() {
+                        if(ansStr.contains('.')){
+                          ansStr = ansStr;
+                        } else {
                           ansStr = ansStr + ".";
+                        }
                       });
                     },
                     elevation: 2.0,
