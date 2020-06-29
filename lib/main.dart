@@ -41,12 +41,12 @@ class _MyCalcPageState extends State<MyCalcPage> {
                 children: <Widget>[
                   // the column widget uses the children property
                   Container(
-                    margin: const EdgeInsets.only(right: 40.0),
+                    margin: const EdgeInsets.only(right: 40.0, left: 40,),
                     // Display Container
                     constraints: BoxConstraints.expand(
                       // Creating a boxed container
                       height:
-                          Theme.of(context).textTheme.display1.fontSize * 1.1 +
+                          Theme.of(context).textTheme.headline4.fontSize * 1.1 +
                               170.0,
                     ),
                     alignment: Alignment
@@ -57,7 +57,7 @@ class _MyCalcPageState extends State<MyCalcPage> {
                       ansStr,
                       style: TextStyle(
                           // Styling the text
-                          fontSize: 50.0,
+                          fontSize: 60.0,
                           color: Colors.white),
                       textAlign: TextAlign.right,
                     ),
@@ -93,8 +93,9 @@ class _MyCalcPageState extends State<MyCalcPage> {
                       style: TextStyle(color: Colors.white, fontSize: 26),
                     ),
                     onPressed: () {
+                      var val = -1 * (double.parse(ansStr));
                       setState(() {
-                        ansStr = "-" + ansStr;
+                        ansStr = val.toString();
                       });
                     },
                     elevation: 2.0,
@@ -107,7 +108,12 @@ class _MyCalcPageState extends State<MyCalcPage> {
                       '%',
                       style: TextStyle(color: Colors.white, fontSize: 26),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      var val = (double.parse(ansStr))/100;
+                      setState(() {
+                        ansStr = val.toString();
+                      });
+                    },
                     elevation: 2.0,
                     fillColor: Colors.grey,
                     padding: EdgeInsets.all(17.5),
@@ -141,7 +147,11 @@ class _MyCalcPageState extends State<MyCalcPage> {
                     ),
                     onPressed: () {
                       setState(() {
-                        ansStr = "7";
+                        if(ansStr=="0"){
+                          ansStr = "7";
+                        } else {
+                          ansStr = ansStr + "7";
+                        }
                       });
                     },
                     elevation: 2.0,
@@ -156,7 +166,11 @@ class _MyCalcPageState extends State<MyCalcPage> {
                     ),
                     onPressed: () {
                       setState(() {
-                        ansStr = "8";
+                        if(ansStr=="0"){
+                          ansStr = "8";
+                        } else {
+                          ansStr = ansStr + "8";
+                        }
                       });
                     },
                     elevation: 2.0,
@@ -171,7 +185,11 @@ class _MyCalcPageState extends State<MyCalcPage> {
                     ),
                     onPressed: () {
                       setState(() {
-                        ansStr = "9";
+                        if(ansStr=="0"){
+                          ansStr = "9";
+                        } else {
+                          ansStr = ansStr + "9";
+                        }
                       });
                     },
                     elevation: 2.0,
@@ -207,7 +225,11 @@ class _MyCalcPageState extends State<MyCalcPage> {
                     ),
                     onPressed: () {
                       setState(() {
-                        ansStr = "4";
+                        if(ansStr=="0"){
+                          ansStr = "4";
+                        } else {
+                          ansStr = ansStr + "4";
+                        }
                       });
                     },
                     elevation: 2.0,
@@ -222,7 +244,11 @@ class _MyCalcPageState extends State<MyCalcPage> {
                     ),
                     onPressed: () {
                       setState(() {
-                        ansStr = "5";
+                        if(ansStr=="0"){
+                          ansStr = "5";
+                        } else {
+                          ansStr = ansStr + "5";
+                        }
                       });
                     },
                     elevation: 2.0,
@@ -237,7 +263,11 @@ class _MyCalcPageState extends State<MyCalcPage> {
                     ),
                     onPressed: () {
                       setState(() {
-                        ansStr = "6";
+                        if(ansStr=="0"){
+                          ansStr = "6";
+                        } else {
+                          ansStr = ansStr + "6";
+                        }
                       });
                     },
                     elevation: 2.0,
@@ -273,7 +303,11 @@ class _MyCalcPageState extends State<MyCalcPage> {
                     ),
                     onPressed: () {
                       setState(() {
-                        ansStr = "1";
+                        if(ansStr=="0"){
+                          ansStr = "1";
+                        } else {
+                          ansStr = ansStr + "1";
+                        }
                       });
                     },
                     elevation: 2.0,
@@ -288,7 +322,11 @@ class _MyCalcPageState extends State<MyCalcPage> {
                     ),
                     onPressed: () {
                       setState(() {
-                        ansStr = "2";
+                        if(ansStr=="0"){
+                          ansStr = "2";
+                        } else {
+                          ansStr = ansStr + "2";
+                        }
                       });
                     },
                     elevation: 2.0,
@@ -303,7 +341,11 @@ class _MyCalcPageState extends State<MyCalcPage> {
                     ),
                     onPressed: () {
                       setState(() {
-                        ansStr = "3";
+                        if(ansStr=="0"){
+                          ansStr = "3";
+                        } else {
+                          ansStr = ansStr + "3";
+                        }
                       });
                     },
                     elevation: 2.0,
@@ -341,7 +383,9 @@ class _MyCalcPageState extends State<MyCalcPage> {
                       ),
                       onPressed: () {
                         setState(() {
-                          ansStr = "0";
+                          if(ansStr!="0"){
+                            ansStr = ansStr + "0";
+                          }
                         });
                       },
                       elevation: 2.0,
@@ -356,7 +400,11 @@ class _MyCalcPageState extends State<MyCalcPage> {
                       '.',
                       style: TextStyle(color: Colors.white, fontSize: 26),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      setState(() {
+                          ansStr = ansStr + ".";
+                      });
+                    },
                     elevation: 2.0,
                     fillColor: Colors.grey,
                     padding: EdgeInsets.all(17.5),
