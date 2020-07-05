@@ -27,6 +27,10 @@ class MyCalcPage extends StatefulWidget {
 
 class _MyCalcPageState extends State<MyCalcPage> {
   var ansStr = '0';
+  static const color1 = Color(0xffb5b5b5);
+  static const color2 = Color(0xff414141);
+  static const color3 = Color(0xfffe9d12);
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -36,23 +40,26 @@ class _MyCalcPageState extends State<MyCalcPage> {
           children: <Widget>[
             Container(
               child: Column(
-                mainAxisAlignment: MainAxisAlignment
-                    .spaceEvenly, // Equal vertical space between all the children of column
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                // Equal vertical space between all the children of column
                 children: <Widget>[
                   // the column widget uses the children property
                   Container(
-                    margin: const EdgeInsets.only(right: 40.0, left: 40,),
+                    margin: const EdgeInsets.only(
+                      right: 40.0,
+                      left: 40,
+                    ),
                     // Display Container
                     constraints: BoxConstraints.expand(
                       // Creating a boxed container
                       height:
                           Theme.of(context).textTheme.headline4.fontSize * 1.1 +
-                              170.0,
+                              140.0,
                     ),
-                    alignment: Alignment
-                        .bottomRight, // Aligning the text to the bottom right of our display screen
-                    color: Colors
-                        .black, // Setting the background color of the container
+                    alignment: Alignment.bottomRight,
+                    // Aligning the text to the bottom right of our display screen
+                    color: Colors.black,
+                    // Setting the background color of the container
                     child: Text(
                       ansStr,
                       style: TextStyle(
@@ -75,22 +82,22 @@ class _MyCalcPageState extends State<MyCalcPage> {
                   RawMaterialButton(
                     child: Text(
                       'AC',
-                      style: TextStyle(color: Colors.white, fontSize: 26),
+                      style: TextStyle(color: Colors.white, fontSize: 32),
                     ),
                     onPressed: () {
                       setState(() {
-                          ansStr = "0";
+                        ansStr = "0";
                       });
                     },
                     elevation: 2.0,
-                    fillColor: Colors.grey,
+                    fillColor: color1,
                     padding: EdgeInsets.all(17.5),
                     shape: CircleBorder(),
                   ),
                   RawMaterialButton(
                     child: Text(
                       '+/-',
-                      style: TextStyle(color: Colors.white, fontSize: 26),
+                      style: TextStyle(color: Colors.white, fontSize: 32),
                     ),
                     onPressed: () {
                       var val = -1 * (double.parse(ansStr));
@@ -99,34 +106,34 @@ class _MyCalcPageState extends State<MyCalcPage> {
                       });
                     },
                     elevation: 2.0,
-                    fillColor: Colors.grey,
+                    fillColor: color1,
                     padding: EdgeInsets.all(17.5),
                     shape: CircleBorder(),
                   ),
                   RawMaterialButton(
                     child: Text(
                       '%',
-                      style: TextStyle(color: Colors.white, fontSize: 26),
+                      style: TextStyle(color: Colors.white, fontSize: 32),
                     ),
                     onPressed: () {
-                      var val = (double.parse(ansStr))/100;
+                      var val = (double.parse(ansStr)) / 100;
                       setState(() {
                         ansStr = val.toString();
                       });
                     },
                     elevation: 2.0,
-                    fillColor: Colors.grey,
+                    fillColor: color1,
                     padding: EdgeInsets.all(17.5),
                     shape: CircleBorder(),
                   ),
                   RawMaterialButton(
                     child: Text(
                       '÷',
-                      style: TextStyle(color: Colors.white, fontSize: 26),
+                      style: TextStyle(color: Colors.white, fontSize: 32),
                     ),
                     onPressed: () {},
                     elevation: 2.0,
-                    fillColor: Colors.orange,
+                    fillColor: color3,
                     padding: EdgeInsets.all(17.5),
                     shape: CircleBorder(),
                   )
@@ -143,11 +150,11 @@ class _MyCalcPageState extends State<MyCalcPage> {
                   RawMaterialButton(
                     child: Text(
                       '7',
-                      style: TextStyle(color: Colors.white, fontSize: 26),
+                      style: TextStyle(color: Colors.white, fontSize: 28),
                     ),
                     onPressed: () {
                       setState(() {
-                        if(ansStr=="0"){
+                        if (ansStr == "0") {
                           ansStr = "7";
                         } else {
                           ansStr = ansStr + "7";
@@ -155,18 +162,18 @@ class _MyCalcPageState extends State<MyCalcPage> {
                       });
                     },
                     elevation: 2.0,
-                    fillColor: Colors.grey,
+                    fillColor: color2,
                     padding: EdgeInsets.all(17.5),
                     shape: CircleBorder(),
                   ),
                   RawMaterialButton(
                     child: Text(
                       '8',
-                      style: TextStyle(color: Colors.white, fontSize: 26),
+                      style: TextStyle(color: Colors.white, fontSize: 28),
                     ),
                     onPressed: () {
                       setState(() {
-                        if(ansStr=="0"){
+                        if (ansStr == "0") {
                           ansStr = "8";
                         } else {
                           ansStr = ansStr + "8";
@@ -174,18 +181,18 @@ class _MyCalcPageState extends State<MyCalcPage> {
                       });
                     },
                     elevation: 2.0,
-                    fillColor: Colors.grey,
+                    fillColor: color2,
                     padding: EdgeInsets.all(17.5),
                     shape: CircleBorder(),
                   ),
                   RawMaterialButton(
                     child: Text(
                       '9',
-                      style: TextStyle(color: Colors.white, fontSize: 26),
+                      style: TextStyle(color: Colors.white, fontSize: 28),
                     ),
                     onPressed: () {
                       setState(() {
-                        if(ansStr=="0"){
+                        if (ansStr == "0") {
                           ansStr = "9";
                         } else {
                           ansStr = ansStr + "9";
@@ -193,18 +200,18 @@ class _MyCalcPageState extends State<MyCalcPage> {
                       });
                     },
                     elevation: 2.0,
-                    fillColor: Colors.grey,
+                    fillColor: color2,
                     padding: EdgeInsets.all(17.5),
                     shape: CircleBorder(),
                   ),
                   RawMaterialButton(
                     child: Text(
                       '×',
-                      style: TextStyle(color: Colors.white, fontSize: 26),
+                      style: TextStyle(color: Colors.white, fontSize: 32),
                     ),
                     onPressed: () {},
                     elevation: 2.0,
-                    fillColor: Colors.orange,
+                    fillColor: color3,
                     padding: EdgeInsets.all(17.5),
                     shape: CircleBorder(),
                   ),
@@ -221,11 +228,11 @@ class _MyCalcPageState extends State<MyCalcPage> {
                   RawMaterialButton(
                     child: Text(
                       '4',
-                      style: TextStyle(color: Colors.white, fontSize: 26),
+                      style: TextStyle(color: Colors.white, fontSize: 28),
                     ),
                     onPressed: () {
                       setState(() {
-                        if(ansStr=="0"){
+                        if (ansStr == "0") {
                           ansStr = "4";
                         } else {
                           ansStr = ansStr + "4";
@@ -233,18 +240,18 @@ class _MyCalcPageState extends State<MyCalcPage> {
                       });
                     },
                     elevation: 2.0,
-                    fillColor: Colors.grey,
+                    fillColor: color2,
                     padding: EdgeInsets.all(17.5),
                     shape: CircleBorder(),
                   ),
                   RawMaterialButton(
                     child: Text(
                       '5',
-                      style: TextStyle(color: Colors.white, fontSize: 26),
+                      style: TextStyle(color: Colors.white, fontSize: 28),
                     ),
                     onPressed: () {
                       setState(() {
-                        if(ansStr=="0"){
+                        if (ansStr == "0") {
                           ansStr = "5";
                         } else {
                           ansStr = ansStr + "5";
@@ -252,18 +259,18 @@ class _MyCalcPageState extends State<MyCalcPage> {
                       });
                     },
                     elevation: 2.0,
-                    fillColor: Colors.grey,
+                    fillColor: color2,
                     padding: EdgeInsets.all(17.5),
                     shape: CircleBorder(),
                   ),
                   RawMaterialButton(
                     child: Text(
                       '6',
-                      style: TextStyle(color: Colors.white, fontSize: 26),
+                      style: TextStyle(color: Colors.white, fontSize: 28),
                     ),
                     onPressed: () {
                       setState(() {
-                        if(ansStr=="0"){
+                        if (ansStr == "0") {
                           ansStr = "6";
                         } else {
                           ansStr = ansStr + "6";
@@ -271,18 +278,18 @@ class _MyCalcPageState extends State<MyCalcPage> {
                       });
                     },
                     elevation: 2.0,
-                    fillColor: Colors.grey,
+                    fillColor: color2,
                     padding: EdgeInsets.all(17.5),
                     shape: CircleBorder(),
                   ),
                   RawMaterialButton(
                     child: Text(
                       '-',
-                      style: TextStyle(color: Colors.white, fontSize: 26),
+                      style: TextStyle(color: Colors.white, fontSize: 32),
                     ),
                     onPressed: () {},
                     elevation: 2.0,
-                    fillColor: Colors.orange,
+                    fillColor: color3,
                     padding: EdgeInsets.all(17.5),
                     shape: CircleBorder(),
                   ),
@@ -299,11 +306,11 @@ class _MyCalcPageState extends State<MyCalcPage> {
                   RawMaterialButton(
                     child: Text(
                       '1',
-                      style: TextStyle(color: Colors.white, fontSize: 26),
+                      style: TextStyle(color: Colors.white, fontSize: 28),
                     ),
                     onPressed: () {
                       setState(() {
-                        if(ansStr=="0"){
+                        if (ansStr == "0") {
                           ansStr = "1";
                         } else {
                           ansStr = ansStr + "1";
@@ -311,18 +318,18 @@ class _MyCalcPageState extends State<MyCalcPage> {
                       });
                     },
                     elevation: 2.0,
-                    fillColor: Colors.grey,
+                    fillColor: color2,
                     padding: EdgeInsets.all(17.5),
                     shape: CircleBorder(),
                   ),
                   RawMaterialButton(
                     child: Text(
                       '2',
-                      style: TextStyle(color: Colors.white, fontSize: 26),
+                      style: TextStyle(color: Colors.white, fontSize: 28),
                     ),
                     onPressed: () {
                       setState(() {
-                        if(ansStr=="0"){
+                        if (ansStr == "0") {
                           ansStr = "2";
                         } else {
                           ansStr = ansStr + "2";
@@ -330,18 +337,18 @@ class _MyCalcPageState extends State<MyCalcPage> {
                       });
                     },
                     elevation: 2.0,
-                    fillColor: Colors.grey,
+                    fillColor: color2,
                     padding: EdgeInsets.all(17.5),
                     shape: CircleBorder(),
                   ),
                   RawMaterialButton(
                     child: Text(
                       '3',
-                      style: TextStyle(color: Colors.white, fontSize: 26),
+                      style: TextStyle(color: Colors.white, fontSize: 28),
                     ),
                     onPressed: () {
                       setState(() {
-                        if(ansStr=="0"){
+                        if (ansStr == "0") {
                           ansStr = "3";
                         } else {
                           ansStr = ansStr + "3";
@@ -349,18 +356,18 @@ class _MyCalcPageState extends State<MyCalcPage> {
                       });
                     },
                     elevation: 2.0,
-                    fillColor: Colors.grey,
+                    fillColor: color2,
                     padding: EdgeInsets.all(17.5),
                     shape: CircleBorder(),
                   ),
                   RawMaterialButton(
                     child: Text(
                       '+',
-                      style: TextStyle(color: Colors.white, fontSize: 26),
+                      style: TextStyle(color: Colors.white, fontSize: 32),
                     ),
                     onPressed: () {},
                     elevation: 2.0,
-                    fillColor: Colors.orange,
+                    fillColor: color3,
                     padding: EdgeInsets.all(17.5),
                     shape: CircleBorder(),
                   )
@@ -379,17 +386,17 @@ class _MyCalcPageState extends State<MyCalcPage> {
                     child: RawMaterialButton(
                       child: Text(
                         '0',
-                        style: TextStyle(color: Colors.white, fontSize: 26),
+                        style: TextStyle(color: Colors.white, fontSize: 28),
                       ),
                       onPressed: () {
                         setState(() {
-                          if(ansStr!="0"){
+                          if (ansStr != "0") {
                             ansStr = ansStr + "0";
                           }
                         });
                       },
                       elevation: 2.0,
-                      fillColor: Colors.grey,
+                      fillColor: color2,
                       padding: EdgeInsets.all(17.5),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(36.0)),
@@ -398,11 +405,11 @@ class _MyCalcPageState extends State<MyCalcPage> {
                   RawMaterialButton(
                     child: Text(
                       '.',
-                      style: TextStyle(color: Colors.white, fontSize: 26),
+                      style: TextStyle(color: Colors.white, fontSize: 28),
                     ),
                     onPressed: () {
                       setState(() {
-                        if(ansStr.contains('.')){
+                        if (ansStr.contains('.')) {
                           ansStr = ansStr;
                         } else {
                           ansStr = ansStr + ".";
@@ -410,18 +417,18 @@ class _MyCalcPageState extends State<MyCalcPage> {
                       });
                     },
                     elevation: 2.0,
-                    fillColor: Colors.grey,
+                    fillColor: color2,
                     padding: EdgeInsets.all(17.5),
                     shape: CircleBorder(),
                   ),
                   RawMaterialButton(
                     child: Text(
                       '=',
-                      style: TextStyle(color: Colors.white, fontSize: 26),
+                      style: TextStyle(color: Colors.white, fontSize: 32),
                     ),
                     onPressed: () {},
                     elevation: 2.0,
-                    fillColor: Colors.orange,
+                    fillColor: color3,
                     padding: EdgeInsets.all(17.5),
                     shape: CircleBorder(),
                   )
