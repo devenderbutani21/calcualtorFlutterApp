@@ -27,8 +27,7 @@ class MyCalcPage extends StatefulWidget {
 
 class _MyCalcPageState extends State<MyCalcPage> {
   var _ansStr = '0';
-  double _num1 = 0;
-  double _num2 = 0;
+  List<String> _num;
 
   static const color1 = Color(0xffb5b5b5);
   static const color2 = Color(0xff414141);
@@ -477,7 +476,25 @@ class _MyCalcPageState extends State<MyCalcPage> {
                       '=',
                       style: TextStyle(color: Colors.white, fontSize: 32),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      setState(() {
+                        if (_ansStr.contains('÷')) {
+                          _num = _ansStr.split('÷');
+                          _ansStr = (double.parse(_num[0])/double.parse(_num[1])).toString();
+                        } else if (_ansStr.contains('×')) {
+                          _num = _ansStr.split('×');
+                          _ansStr = (double.parse(_num[0])*double.parse(_num[1])).toString();
+                        } else if (_ansStr.contains('−')) {
+                          _num = _ansStr.split('−');
+                          _ansStr = (double.parse(_num[0])-double.parse(_num[1])).toString();
+                        } else if (_ansStr.contains('+')) {
+                          _num = _ansStr.split('+');
+                          _ansStr = (double.parse(_num[0])+double.parse(_num[1])).toString();
+                        } else {
+                          _ansStr=_ansStr;
+                        }
+                      });
+                    },
                     elevation: 2.0,
                     fillColor: color3,
                     padding: EdgeInsets.all(17.5),
