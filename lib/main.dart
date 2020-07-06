@@ -26,7 +26,10 @@ class MyCalcPage extends StatefulWidget {
 }
 
 class _MyCalcPageState extends State<MyCalcPage> {
-  var ansStr = '0';
+  var _ansStr = '0';
+  double _num1 = 0;
+  double _num2 = 0;
+
   static const color1 = Color(0xffb5b5b5);
   static const color2 = Color(0xff414141);
   static const color3 = Color(0xfffe9d12);
@@ -61,7 +64,7 @@ class _MyCalcPageState extends State<MyCalcPage> {
                     color: Colors.black,
                     // Setting the background color of the container
                     child: Text(
-                      ansStr,
+                      _ansStr,
                       style: TextStyle(
                           // Styling the text
                           fontSize: 60.0,
@@ -82,11 +85,11 @@ class _MyCalcPageState extends State<MyCalcPage> {
                   RawMaterialButton(
                     child: Text(
                       'AC',
-                      style: TextStyle(color: Colors.white, fontSize: 32),
+                      style: TextStyle(color: Colors.black, fontSize: 32),
                     ),
                     onPressed: () {
                       setState(() {
-                        ansStr = "0";
+                        _ansStr = "0";
                       });
                     },
                     elevation: 2.0,
@@ -96,13 +99,13 @@ class _MyCalcPageState extends State<MyCalcPage> {
                   ),
                   RawMaterialButton(
                     child: Text(
-                      '+/-',
-                      style: TextStyle(color: Colors.white, fontSize: 32),
+                      '+/−',
+                      style: TextStyle(color: Colors.black, fontSize: 32),
                     ),
                     onPressed: () {
-                      var val = -1 * (double.parse(ansStr));
+                      var val = -1 * (int.parse(_ansStr));
                       setState(() {
-                        ansStr = val.toString();
+                        _ansStr = val.toString();
                       });
                     },
                     elevation: 2.0,
@@ -113,12 +116,12 @@ class _MyCalcPageState extends State<MyCalcPage> {
                   RawMaterialButton(
                     child: Text(
                       '%',
-                      style: TextStyle(color: Colors.white, fontSize: 32),
+                      style: TextStyle(color: Colors.black, fontSize: 32),
                     ),
                     onPressed: () {
-                      var val = (double.parse(ansStr)) / 100;
+                      var val = (double.parse(_ansStr)) / 100;
                       setState(() {
-                        ansStr = val.toString();
+                        _ansStr = val.toString();
                       });
                     },
                     elevation: 2.0,
@@ -131,7 +134,18 @@ class _MyCalcPageState extends State<MyCalcPage> {
                       '÷',
                       style: TextStyle(color: Colors.white, fontSize: 32),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      setState(() {
+                        if (_ansStr.contains('÷') ||
+                            _ansStr.contains('×') ||
+                            _ansStr.contains('−') ||
+                            _ansStr.contains('+')) {
+                        } else if (_ansStr == '0') {
+                        } else {
+                          _ansStr = _ansStr + "÷";
+                        }
+                      });
+                    },
                     elevation: 2.0,
                     fillColor: color3,
                     padding: EdgeInsets.all(17.5),
@@ -154,10 +168,10 @@ class _MyCalcPageState extends State<MyCalcPage> {
                     ),
                     onPressed: () {
                       setState(() {
-                        if (ansStr == "0") {
-                          ansStr = "7";
+                        if (_ansStr == "0") {
+                          _ansStr = "7";
                         } else {
-                          ansStr = ansStr + "7";
+                          _ansStr = _ansStr + "7";
                         }
                       });
                     },
@@ -173,10 +187,10 @@ class _MyCalcPageState extends State<MyCalcPage> {
                     ),
                     onPressed: () {
                       setState(() {
-                        if (ansStr == "0") {
-                          ansStr = "8";
+                        if (_ansStr == "0") {
+                          _ansStr = "8";
                         } else {
-                          ansStr = ansStr + "8";
+                          _ansStr = _ansStr + "8";
                         }
                       });
                     },
@@ -192,10 +206,10 @@ class _MyCalcPageState extends State<MyCalcPage> {
                     ),
                     onPressed: () {
                       setState(() {
-                        if (ansStr == "0") {
-                          ansStr = "9";
+                        if (_ansStr == "0") {
+                          _ansStr = "9";
                         } else {
-                          ansStr = ansStr + "9";
+                          _ansStr = _ansStr + "9";
                         }
                       });
                     },
@@ -209,7 +223,18 @@ class _MyCalcPageState extends State<MyCalcPage> {
                       '×',
                       style: TextStyle(color: Colors.white, fontSize: 32),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      setState(() {
+                        if (_ansStr.contains('÷') ||
+                            _ansStr.contains('×') ||
+                            _ansStr.contains('−') ||
+                            _ansStr.contains('+')) {
+                        } else if (_ansStr == '0') {
+                        } else {
+                          _ansStr = _ansStr + "×";
+                        }
+                      });
+                    },
                     elevation: 2.0,
                     fillColor: color3,
                     padding: EdgeInsets.all(17.5),
@@ -232,10 +257,10 @@ class _MyCalcPageState extends State<MyCalcPage> {
                     ),
                     onPressed: () {
                       setState(() {
-                        if (ansStr == "0") {
-                          ansStr = "4";
+                        if (_ansStr == "0") {
+                          _ansStr = "4";
                         } else {
-                          ansStr = ansStr + "4";
+                          _ansStr = _ansStr + "4";
                         }
                       });
                     },
@@ -251,10 +276,10 @@ class _MyCalcPageState extends State<MyCalcPage> {
                     ),
                     onPressed: () {
                       setState(() {
-                        if (ansStr == "0") {
-                          ansStr = "5";
+                        if (_ansStr == "0") {
+                          _ansStr = "5";
                         } else {
-                          ansStr = ansStr + "5";
+                          _ansStr = _ansStr + "5";
                         }
                       });
                     },
@@ -270,10 +295,10 @@ class _MyCalcPageState extends State<MyCalcPage> {
                     ),
                     onPressed: () {
                       setState(() {
-                        if (ansStr == "0") {
-                          ansStr = "6";
+                        if (_ansStr == "0") {
+                          _ansStr = "6";
                         } else {
-                          ansStr = ansStr + "6";
+                          _ansStr = _ansStr + "6";
                         }
                       });
                     },
@@ -284,10 +309,21 @@ class _MyCalcPageState extends State<MyCalcPage> {
                   ),
                   RawMaterialButton(
                     child: Text(
-                      '-',
+                      '−',
                       style: TextStyle(color: Colors.white, fontSize: 32),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      setState(() {
+                        if (_ansStr.contains('÷') ||
+                            _ansStr.contains('×') ||
+                            _ansStr.contains('−') ||
+                            _ansStr.contains('+')) {
+                        } else if (_ansStr == '0') {
+                        } else {
+                          _ansStr = _ansStr + "−";
+                        }
+                      });
+                    },
                     elevation: 2.0,
                     fillColor: color3,
                     padding: EdgeInsets.all(17.5),
@@ -310,10 +346,10 @@ class _MyCalcPageState extends State<MyCalcPage> {
                     ),
                     onPressed: () {
                       setState(() {
-                        if (ansStr == "0") {
-                          ansStr = "1";
+                        if (_ansStr == "0") {
+                          _ansStr = "1";
                         } else {
-                          ansStr = ansStr + "1";
+                          _ansStr = _ansStr + "1";
                         }
                       });
                     },
@@ -329,10 +365,10 @@ class _MyCalcPageState extends State<MyCalcPage> {
                     ),
                     onPressed: () {
                       setState(() {
-                        if (ansStr == "0") {
-                          ansStr = "2";
+                        if (_ansStr == "0") {
+                          _ansStr = "2";
                         } else {
-                          ansStr = ansStr + "2";
+                          _ansStr = _ansStr + "2";
                         }
                       });
                     },
@@ -348,10 +384,10 @@ class _MyCalcPageState extends State<MyCalcPage> {
                     ),
                     onPressed: () {
                       setState(() {
-                        if (ansStr == "0") {
-                          ansStr = "3";
+                        if (_ansStr == "0") {
+                          _ansStr = "3";
                         } else {
-                          ansStr = ansStr + "3";
+                          _ansStr = _ansStr + "3";
                         }
                       });
                     },
@@ -365,7 +401,18 @@ class _MyCalcPageState extends State<MyCalcPage> {
                       '+',
                       style: TextStyle(color: Colors.white, fontSize: 32),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      setState(() {
+                        if (_ansStr.contains('÷') ||
+                            _ansStr.contains('×') ||
+                            _ansStr.contains('−') ||
+                            _ansStr.contains('+')) {
+                        } else if (_ansStr == '0') {
+                        } else {
+                          _ansStr = _ansStr + "+";
+                        }
+                      });
+                    },
                     elevation: 2.0,
                     fillColor: color3,
                     padding: EdgeInsets.all(17.5),
@@ -390,8 +437,8 @@ class _MyCalcPageState extends State<MyCalcPage> {
                       ),
                       onPressed: () {
                         setState(() {
-                          if (ansStr != "0") {
-                            ansStr = ansStr + "0";
+                          if (_ansStr != "0") {
+                            _ansStr = _ansStr + "0";
                           }
                         });
                       },
@@ -409,10 +456,14 @@ class _MyCalcPageState extends State<MyCalcPage> {
                     ),
                     onPressed: () {
                       setState(() {
-                        if (ansStr.contains('.')) {
-                          ansStr = ansStr;
+                        if (_ansStr.contains('.') ||
+                            _ansStr.contains('÷') ||
+                            _ansStr.contains('×') ||
+                            _ansStr.contains('−') ||
+                            _ansStr.contains('+')) {
+                          _ansStr = _ansStr;
                         } else {
-                          ansStr = ansStr + ".";
+                          _ansStr = _ansStr + ".";
                         }
                       });
                     },
