@@ -460,7 +460,7 @@ class _MyCalcPageState extends State<MyCalcPage> {
                             _ansStr.contains('×') ||
                             _ansStr.contains('−') ||
                             _ansStr.contains('+')) {
-                          _ansStr = _ansStr;
+                          _ansStr = _ansStr + ".";
                         } else {
                           _ansStr = _ansStr + ".";
                         }
