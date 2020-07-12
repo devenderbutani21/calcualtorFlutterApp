@@ -55,8 +55,12 @@ class _MyCalcPageState extends State<MyCalcPage> {
                     constraints: BoxConstraints.expand(
                       // Creating a boxed container
                       height:
-                          Theme.of(context).textTheme.headline4.fontSize * 1.1 +
-                              140.0,
+                      Theme
+                          .of(context)
+                          .textTheme
+                          .headline4
+                          .fontSize * 1.1 +
+                          160.0,
                     ),
                     alignment: Alignment.bottomRight,
                     // Aligning the text to the bottom right of our display screen
@@ -65,7 +69,7 @@ class _MyCalcPageState extends State<MyCalcPage> {
                     child: Text(
                       _ansStr,
                       style: TextStyle(
-                          // Styling the text
+                        // Styling the text
                           fontSize: 60.0,
                           color: Colors.white),
                       textAlign: TextAlign.right,
@@ -75,7 +79,7 @@ class _MyCalcPageState extends State<MyCalcPage> {
               ),
             ),
             SizedBox(
-              height: 20,
+              height: 10,
             ),
             Container(
               margin: const EdgeInsets.only(left: 40.0),
@@ -138,9 +142,8 @@ class _MyCalcPageState extends State<MyCalcPage> {
                         if (_ansStr.contains('÷') ||
                             _ansStr.contains('×') ||
                             _ansStr.contains('−') ||
-                            _ansStr.contains('+')) {
-                        } else if (_ansStr == '0') {
-                        } else {
+                            _ansStr.contains('+')) {} else
+                        if (_ansStr == '0') {} else {
                           _ansStr = _ansStr + "÷";
                         }
                       });
@@ -227,9 +230,8 @@ class _MyCalcPageState extends State<MyCalcPage> {
                         if (_ansStr.contains('÷') ||
                             _ansStr.contains('×') ||
                             _ansStr.contains('−') ||
-                            _ansStr.contains('+')) {
-                        } else if (_ansStr == '0') {
-                        } else {
+                            _ansStr.contains('+')) {} else
+                        if (_ansStr == '0') {} else {
                           _ansStr = _ansStr + "×";
                         }
                       });
@@ -316,9 +318,8 @@ class _MyCalcPageState extends State<MyCalcPage> {
                         if (_ansStr.contains('÷') ||
                             _ansStr.contains('×') ||
                             _ansStr.contains('−') ||
-                            _ansStr.contains('+')) {
-                        } else if (_ansStr == '0') {
-                        } else {
+                            _ansStr.contains('+')) {} else
+                        if (_ansStr == '0') {} else {
                           _ansStr = _ansStr + "−";
                         }
                       });
@@ -405,9 +406,8 @@ class _MyCalcPageState extends State<MyCalcPage> {
                         if (_ansStr.contains('÷') ||
                             _ansStr.contains('×') ||
                             _ansStr.contains('−') ||
-                            _ansStr.contains('+')) {
-                        } else if (_ansStr == '0') {
-                        } else {
+                            _ansStr.contains('+')) {} else
+                        if (_ansStr == '0') {} else {
                           _ansStr = _ansStr + "+";
                         }
                       });
@@ -455,8 +455,7 @@ class _MyCalcPageState extends State<MyCalcPage> {
                     ),
                     onPressed: () {
                       setState(() {
-                        if (_ansStr.contains('.') ||
-                            _ansStr.contains('÷') ||
+                        if ( _ansStr.contains('÷') ||
                             _ansStr.contains('×') ||
                             _ansStr.contains('−') ||
                             _ansStr.contains('+')) {
@@ -480,18 +479,26 @@ class _MyCalcPageState extends State<MyCalcPage> {
                       setState(() {
                         if (_ansStr.contains('÷')) {
                           _num = _ansStr.split('÷');
-                          _ansStr = (double.parse(_num[0])/double.parse(_num[1])).toString();
+                          _ansStr =
+                              (double.parse(_num[0]) / double.parse(_num[1]))
+                                  .toString();
                         } else if (_ansStr.contains('×')) {
                           _num = _ansStr.split('×');
-                          _ansStr = (double.parse(_num[0])*double.parse(_num[1])).toString();
+                          _ansStr =
+                              (double.parse(_num[0]) * double.parse(_num[1]))
+                                  .toString();
                         } else if (_ansStr.contains('−')) {
                           _num = _ansStr.split('−');
-                          _ansStr = (double.parse(_num[0])-double.parse(_num[1])).toString();
+                          _ansStr =
+                              (double.parse(_num[0]) - double.parse(_num[1]))
+                                  .toString();
                         } else if (_ansStr.contains('+')) {
                           _num = _ansStr.split('+');
-                          _ansStr = (double.parse(_num[0])+double.parse(_num[1])).toString();
+                          _ansStr =
+                              (double.parse(_num[0]) + double.parse(_num[1]))
+                                  .toString();
                         } else {
-                          _ansStr=_ansStr;
+                          _ansStr = _ansStr;
                         }
                       });
                     },
