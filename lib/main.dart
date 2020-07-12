@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
 
 void main() {
   runApp(MyApp());
@@ -35,6 +37,9 @@ class _MyCalcPageState extends State<MyCalcPage> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+    ]);
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.black,
