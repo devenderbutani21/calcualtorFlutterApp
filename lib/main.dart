@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-
 void main() {
   runApp(MyApp());
 }
@@ -12,7 +11,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'Calculator',
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
@@ -31,12 +30,15 @@ class _MyCalcPageState extends State<MyCalcPage> {
   var _ansStr = '0';
   List<String> _num;
 
+  // Color Scheme
   static const color1 = Color(0xffb5b5b5);
   static const color2 = Color(0xff414141);
   static const color3 = Color(0xfffe9d12);
 
   @override
   Widget build(BuildContext context) {
+    final mediaQuery = MediaQuery.of(context);
+    final curScaleFactor = mediaQuery.textScaleFactor;
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
     ]);
@@ -52,20 +54,14 @@ class _MyCalcPageState extends State<MyCalcPage> {
                 children: <Widget>[
                   // the column widget uses the children property
                   Container(
-                    margin: const EdgeInsets.only(
-                      right: 40.0,
-                      left: 40,
+                    margin: EdgeInsets.only(
+                      right: mediaQuery.size.width * 0.1,
+                      left: mediaQuery.size.width * 0.1,
                     ),
                     // Display Container
                     constraints: BoxConstraints.expand(
                       // Creating a boxed container
-                      height:
-                      Theme
-                          .of(context)
-                          .textTheme
-                          .headline4
-                          .fontSize * 1.1 +
-                          160.0,
+                      height: (mediaQuery.size.height- mediaQuery.padding.top) * 0.3,
                     ),
                     alignment: Alignment.bottomRight,
                     // Aligning the text to the bottom right of our display screen
@@ -75,7 +71,7 @@ class _MyCalcPageState extends State<MyCalcPage> {
                       _ansStr,
                       style: TextStyle(
                         // Styling the text
-                          fontSize: 60.0,
+                          fontSize: 60.0 * curScaleFactor,
                           color: Colors.white),
                       textAlign: TextAlign.right,
                     ),
@@ -84,16 +80,16 @@ class _MyCalcPageState extends State<MyCalcPage> {
               ),
             ),
             SizedBox(
-              height: 10,
+              height: (mediaQuery.size.height- mediaQuery.padding.top) * 0.02,
             ),
             Container(
-              margin: const EdgeInsets.only(left: 40.0),
+              margin: EdgeInsets.only(left: (mediaQuery.size.height- mediaQuery.padding.top) * 0.045, right: (mediaQuery.size.height- mediaQuery.padding.top) * 0.045,),
               child: Row(
                 children: <Widget>[
                   RawMaterialButton(
                     child: Text(
                       'AC',
-                      style: TextStyle(color: Colors.black, fontSize: 32),
+                      style: TextStyle(color: Colors.black, fontSize: 32 * curScaleFactor),
                     ),
                     onPressed: () {
                       setState(() {
@@ -108,7 +104,7 @@ class _MyCalcPageState extends State<MyCalcPage> {
                   RawMaterialButton(
                     child: Text(
                       '+/−',
-                      style: TextStyle(color: Colors.black, fontSize: 32),
+                      style: TextStyle(color: Colors.black, fontSize: 32 * curScaleFactor),
                     ),
                     onPressed: () {
                       var val = -1 * (int.parse(_ansStr));
@@ -124,7 +120,7 @@ class _MyCalcPageState extends State<MyCalcPage> {
                   RawMaterialButton(
                     child: Text(
                       '%',
-                      style: TextStyle(color: Colors.black, fontSize: 32),
+                      style: TextStyle(color: Colors.black, fontSize: 32 * curScaleFactor),
                     ),
                     onPressed: () {
                       var val = (double.parse(_ansStr)) / 100;
@@ -140,7 +136,7 @@ class _MyCalcPageState extends State<MyCalcPage> {
                   RawMaterialButton(
                     child: Text(
                       '÷',
-                      style: TextStyle(color: Colors.white, fontSize: 32),
+                      style: TextStyle(color: Colors.white, fontSize: 32 * curScaleFactor),
                     ),
                     onPressed: () {
                       setState(() {
@@ -162,16 +158,16 @@ class _MyCalcPageState extends State<MyCalcPage> {
               ),
             ),
             SizedBox(
-              height: 20,
+              height: (mediaQuery.size.height- mediaQuery.padding.top) * 0.03,
             ),
             Container(
-              margin: const EdgeInsets.only(left: 40.0),
+              margin: EdgeInsets.only(left: (mediaQuery.size.height- mediaQuery.padding.top) * 0.045, right: (mediaQuery.size.height- mediaQuery.padding.top) * 0.045,),
               child: Row(
                 children: <Widget>[
                   RawMaterialButton(
                     child: Text(
                       '7',
-                      style: TextStyle(color: Colors.white, fontSize: 28),
+                      style: TextStyle(color: Colors.white, fontSize: 28 * curScaleFactor),
                     ),
                     onPressed: () {
                       setState(() {
@@ -190,7 +186,7 @@ class _MyCalcPageState extends State<MyCalcPage> {
                   RawMaterialButton(
                     child: Text(
                       '8',
-                      style: TextStyle(color: Colors.white, fontSize: 28),
+                      style: TextStyle(color: Colors.white, fontSize: 28 * curScaleFactor),
                     ),
                     onPressed: () {
                       setState(() {
@@ -209,7 +205,7 @@ class _MyCalcPageState extends State<MyCalcPage> {
                   RawMaterialButton(
                     child: Text(
                       '9',
-                      style: TextStyle(color: Colors.white, fontSize: 28),
+                      style: TextStyle(color: Colors.white, fontSize: 28 * curScaleFactor),
                     ),
                     onPressed: () {
                       setState(() {
@@ -228,7 +224,7 @@ class _MyCalcPageState extends State<MyCalcPage> {
                   RawMaterialButton(
                     child: Text(
                       '×',
-                      style: TextStyle(color: Colors.white, fontSize: 32),
+                      style: TextStyle(color: Colors.white, fontSize: 32 * curScaleFactor),
                     ),
                     onPressed: () {
                       setState(() {
@@ -250,16 +246,16 @@ class _MyCalcPageState extends State<MyCalcPage> {
               ),
             ),
             SizedBox(
-              height: 20,
+              height: (mediaQuery.size.height- mediaQuery.padding.top) * 0.03,
             ),
             Container(
-              margin: const EdgeInsets.only(left: 40.0),
+              margin: EdgeInsets.only(left: (mediaQuery.size.height- mediaQuery.padding.top) * 0.045, right: (mediaQuery.size.height- mediaQuery.padding.top) * 0.045,),
               child: Row(
                 children: <Widget>[
                   RawMaterialButton(
                     child: Text(
                       '4',
-                      style: TextStyle(color: Colors.white, fontSize: 28),
+                      style: TextStyle(color: Colors.white, fontSize: 28 * curScaleFactor),
                     ),
                     onPressed: () {
                       setState(() {
@@ -278,7 +274,7 @@ class _MyCalcPageState extends State<MyCalcPage> {
                   RawMaterialButton(
                     child: Text(
                       '5',
-                      style: TextStyle(color: Colors.white, fontSize: 28),
+                      style: TextStyle(color: Colors.white, fontSize: 28 * curScaleFactor),
                     ),
                     onPressed: () {
                       setState(() {
@@ -316,7 +312,7 @@ class _MyCalcPageState extends State<MyCalcPage> {
                   RawMaterialButton(
                     child: Text(
                       '−',
-                      style: TextStyle(color: Colors.white, fontSize: 32),
+                      style: TextStyle(color: Colors.white, fontSize: 32 * curScaleFactor),
                     ),
                     onPressed: () {
                       setState(() {
@@ -338,16 +334,16 @@ class _MyCalcPageState extends State<MyCalcPage> {
               ),
             ),
             SizedBox(
-              height: 20,
+              height: (mediaQuery.size.height- mediaQuery.padding.top) * 0.03,
             ),
             Container(
-              margin: const EdgeInsets.only(left: 40.0),
+              margin: EdgeInsets.only(left: (mediaQuery.size.height- mediaQuery.padding.top) * 0.045, right: (mediaQuery.size.height- mediaQuery.padding.top) * 0.045,),
               child: Row(
                 children: <Widget>[
                   RawMaterialButton(
                     child: Text(
                       '1',
-                      style: TextStyle(color: Colors.white, fontSize: 28),
+                      style: TextStyle(color: Colors.white, fontSize: 28 * curScaleFactor),
                     ),
                     onPressed: () {
                       setState(() {
@@ -366,7 +362,7 @@ class _MyCalcPageState extends State<MyCalcPage> {
                   RawMaterialButton(
                     child: Text(
                       '2',
-                      style: TextStyle(color: Colors.white, fontSize: 28),
+                      style: TextStyle(color: Colors.white, fontSize: 28 * curScaleFactor),
                     ),
                     onPressed: () {
                       setState(() {
@@ -385,7 +381,7 @@ class _MyCalcPageState extends State<MyCalcPage> {
                   RawMaterialButton(
                     child: Text(
                       '3',
-                      style: TextStyle(color: Colors.white, fontSize: 28),
+                      style: TextStyle(color: Colors.white, fontSize: 28 * curScaleFactor),
                     ),
                     onPressed: () {
                       setState(() {
@@ -404,7 +400,7 @@ class _MyCalcPageState extends State<MyCalcPage> {
                   RawMaterialButton(
                     child: Text(
                       '+',
-                      style: TextStyle(color: Colors.white, fontSize: 32),
+                      style: TextStyle(color: Colors.white, fontSize: 32 * curScaleFactor),
                     ),
                     onPressed: () {
                       setState(() {
@@ -426,10 +422,10 @@ class _MyCalcPageState extends State<MyCalcPage> {
               ),
             ),
             SizedBox(
-              height: 20,
+              height: (mediaQuery.size.height- mediaQuery.padding.top) * 0.03,
             ),
             Container(
-              margin: const EdgeInsets.only(left: 40.0),
+              margin: EdgeInsets.only(left: (mediaQuery.size.height- mediaQuery.padding.top) * 0.0455, right: (mediaQuery.size.height- mediaQuery.padding.top) * 0.0455,),
               child: Row(
                 children: <Widget>[
                   Container(
@@ -437,7 +433,7 @@ class _MyCalcPageState extends State<MyCalcPage> {
                     child: RawMaterialButton(
                       child: Text(
                         '0',
-                        style: TextStyle(color: Colors.white, fontSize: 28),
+                        style: TextStyle(color: Colors.white, fontSize: 28 * curScaleFactor),
                       ),
                       onPressed: () {
                         setState(() {
@@ -456,7 +452,7 @@ class _MyCalcPageState extends State<MyCalcPage> {
                   RawMaterialButton(
                     child: Text(
                       '.',
-                      style: TextStyle(color: Colors.white, fontSize: 28),
+                      style: TextStyle(color: Colors.white, fontSize: 28 * curScaleFactor),
                     ),
                     onPressed: () {
                       setState(() {
@@ -478,7 +474,7 @@ class _MyCalcPageState extends State<MyCalcPage> {
                   RawMaterialButton(
                     child: Text(
                       '=',
-                      style: TextStyle(color: Colors.white, fontSize: 32),
+                      style: TextStyle(color: Colors.white, fontSize: 32 * curScaleFactor),
                     ),
                     onPressed: () {
                       setState(() {
