@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'constant_terms.dart';
+
+import 'widgets/buttonType1.dart';
 
 void main() {
   runApp(MyApp());
@@ -30,10 +33,7 @@ class _MyCalcPageState extends State<MyCalcPage> {
   var _ansStr = '0';
   List<String> _num;
 
-  // Color Scheme
-  static const color1 = Color(0xffb5b5b5);
-  static const color2 = Color(0xff414141);
-  static const color3 = Color(0xfffe9d12);
+
 
   @override
   Widget build(BuildContext context) {
@@ -164,25 +164,26 @@ class _MyCalcPageState extends State<MyCalcPage> {
               margin: EdgeInsets.only(left: (mediaQuery.size.height- mediaQuery.padding.top) * 0.045, right: (mediaQuery.size.height- mediaQuery.padding.top) * 0.045,),
               child: Row(
                 children: <Widget>[
-                  RawMaterialButton(
-                    child: Text(
-                      '7',
-                      style: TextStyle(color: Colors.white, fontSize: 28 * curScaleFactor),
-                    ),
-                    onPressed: () {
-                      setState(() {
-                        if (_ansStr == "0") {
-                          _ansStr = "7";
-                        } else {
-                          _ansStr = _ansStr + "7";
-                        }
-                      });
-                    },
-                    elevation: 2.0,
-                    fillColor: color2,
-                    padding: EdgeInsets.all(17.5),
-                    shape: CircleBorder(),
-                  ),
+//                  RawMaterialButton(
+//                    child: Text(
+//                      '7',
+//                      style: TextStyle(color: Colors.white, fontSize: 28 * curScaleFactor),
+//                    ),
+//                    onPressed: () {
+//                      setState(() {
+//                        if (_ansStr == "0") {
+//                          _ansStr = "7";
+//                        } else {
+//                          _ansStr = _ansStr + "7";
+//                        }
+//                      });
+//                    },
+//                    elevation: 2.0,
+//                    fillColor: color2,
+//                    padding: EdgeInsets.all(17.5),
+//                    shape: CircleBorder(),
+//                  ),
+                  ButtonType1(_ansStr, "7", mediaQuery),
                   RawMaterialButton(
                     child: Text(
                       '8',
