@@ -33,6 +33,13 @@ class _MyCalcPageState extends State<MyCalcPage> {
   var _ansStr = '0';
   List<String> _num;
 
+  void _onButtonPressed(String brnStr) {
+    setState(() {
+      if(['0','1','2','3','4','5','6','7','8','9'].contains(brnStr))
+        _ansStr = (_ansStr == '0') ? brnStr : _ansStr + brnStr;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context);
@@ -162,64 +169,9 @@ class _MyCalcPageState extends State<MyCalcPage> {
               margin: EdgeInsets.only(left: (mediaQuery.size.height- mediaQuery.padding.top) * 0.045, right: (mediaQuery.size.height- mediaQuery.padding.top) * 0.045,),
               child: Row(
                 children: <Widget>[
-//                  RawMaterialButton(
-//                    child: Text(
-//                      '7',
-//                      style: TextStyle(color: Colors.white, fontSize: 28 * curScaleFactor),
-//                    ),
-//                    onPressed: () {
-//                      setState(() {
-//                        if (_ansStr == "0") {
-//                          _ansStr = "7";
-//                        } else {
-//                          _ansStr = _ansStr + "7";
-//                        }
-//                      });
-//                    },
-//                    elevation: 2.0,
-//                    fillColor: color2,
-//                    padding: EdgeInsets.all(17.5),
-//                    shape: CircleBorder(),
-//                  ),
-                  ButtonType1(_ansStr, "7", mediaQuery),
-                  RawMaterialButton(
-                    child: Text(
-                      '8',
-                      style: TextStyle(color: Colors.white, fontSize: 28 * curScaleFactor),
-                    ),
-                    onPressed: () {
-                      setState(() {
-                        if (_ansStr == "0") {
-                          _ansStr = "8";
-                        } else {
-                          _ansStr = _ansStr + "8";
-                        }
-                      });
-                    },
-                    elevation: 2.0,
-                    fillColor: color2,
-                    padding: EdgeInsets.all(17.5),
-                    shape: CircleBorder(),
-                  ),
-                  RawMaterialButton(
-                    child: Text(
-                      '9',
-                      style: TextStyle(color: Colors.white, fontSize: 28 * curScaleFactor),
-                    ),
-                    onPressed: () {
-                      setState(() {
-                        if (_ansStr == "0") {
-                          _ansStr = "9";
-                        } else {
-                          _ansStr = _ansStr + "9";
-                        }
-                      });
-                    },
-                    elevation: 2.0,
-                    fillColor: color2,
-                    padding: EdgeInsets.all(17.5),
-                    shape: CircleBorder(),
-                  ),
+                  ButtonType1("7", mediaQuery, _onButtonPressed),
+                  ButtonType1("8", mediaQuery, _onButtonPressed),
+                  ButtonType1("9", mediaQuery, _onButtonPressed),
                   RawMaterialButton(
                     child: Text(
                       '×',
@@ -251,63 +203,9 @@ class _MyCalcPageState extends State<MyCalcPage> {
               margin: EdgeInsets.only(left: (mediaQuery.size.height- mediaQuery.padding.top) * 0.045, right: (mediaQuery.size.height- mediaQuery.padding.top) * 0.045,),
               child: Row(
                 children: <Widget>[
-                  RawMaterialButton(
-                    child: Text(
-                      '4',
-                      style: TextStyle(color: Colors.white, fontSize: 28 * curScaleFactor),
-                    ),
-                    onPressed: () {
-                      setState(() {
-                        if (_ansStr == "0") {
-                          _ansStr = "4";
-                        } else {
-                          _ansStr = _ansStr + "4";
-                        }
-                      });
-                    },
-                    elevation: 2.0,
-                    fillColor: color2,
-                    padding: EdgeInsets.all(17.5),
-                    shape: CircleBorder(),
-                  ),
-                  RawMaterialButton(
-                    child: Text(
-                      '5',
-                      style: TextStyle(color: Colors.white, fontSize: 28 * curScaleFactor),
-                    ),
-                    onPressed: () {
-                      setState(() {
-                        if (_ansStr == "0") {
-                          _ansStr = "5";
-                        } else {
-                          _ansStr = _ansStr + "5";
-                        }
-                      });
-                    },
-                    elevation: 2.0,
-                    fillColor: color2,
-                    padding: EdgeInsets.all(17.5),
-                    shape: CircleBorder(),
-                  ),
-                  RawMaterialButton(
-                    child: Text(
-                      '6',
-                      style: TextStyle(color: Colors.white, fontSize: 28),
-                    ),
-                    onPressed: () {
-                      setState(() {
-                        if (_ansStr == "0") {
-                          _ansStr = "6";
-                        } else {
-                          _ansStr = _ansStr + "6";
-                        }
-                      });
-                    },
-                    elevation: 2.0,
-                    fillColor: color2,
-                    padding: EdgeInsets.all(17.5),
-                    shape: CircleBorder(),
-                  ),
+                  ButtonType1("4", mediaQuery, _onButtonPressed),
+                  ButtonType1("5", mediaQuery, _onButtonPressed),
+                  ButtonType1("6", mediaQuery, _onButtonPressed),
                   RawMaterialButton(
                     child: Text(
                       '−',
@@ -339,63 +237,9 @@ class _MyCalcPageState extends State<MyCalcPage> {
               margin: EdgeInsets.only(left: (mediaQuery.size.height- mediaQuery.padding.top) * 0.045, right: (mediaQuery.size.height- mediaQuery.padding.top) * 0.045,),
               child: Row(
                 children: <Widget>[
-                  RawMaterialButton(
-                    child: Text(
-                      '1',
-                      style: TextStyle(color: Colors.white, fontSize: 28 * curScaleFactor),
-                    ),
-                    onPressed: () {
-                      setState(() {
-                        if (_ansStr == "0") {
-                          _ansStr = "1";
-                        } else {
-                          _ansStr = _ansStr + "1";
-                        }
-                      });
-                    },
-                    elevation: 2.0,
-                    fillColor: color2,
-                    padding: EdgeInsets.all(17.5),
-                    shape: CircleBorder(),
-                  ),
-                  RawMaterialButton(
-                    child: Text(
-                      '2',
-                      style: TextStyle(color: Colors.white, fontSize: 28 * curScaleFactor),
-                    ),
-                    onPressed: () {
-                      setState(() {
-                        if (_ansStr == "0") {
-                          _ansStr = "2";
-                        } else {
-                          _ansStr = _ansStr + "2";
-                        }
-                      });
-                    },
-                    elevation: 2.0,
-                    fillColor: color2,
-                    padding: EdgeInsets.all(17.5),
-                    shape: CircleBorder(),
-                  ),
-                  RawMaterialButton(
-                    child: Text(
-                      '3',
-                      style: TextStyle(color: Colors.white, fontSize: 28 * curScaleFactor),
-                    ),
-                    onPressed: () {
-                      setState(() {
-                        if (_ansStr == "0") {
-                          _ansStr = "3";
-                        } else {
-                          _ansStr = _ansStr + "3";
-                        }
-                      });
-                    },
-                    elevation: 2.0,
-                    fillColor: color2,
-                    padding: EdgeInsets.all(17.5),
-                    shape: CircleBorder(),
-                  ),
+                  ButtonType1("1", mediaQuery, _onButtonPressed),
+                  ButtonType1("2", mediaQuery, _onButtonPressed),
+                  ButtonType1("3", mediaQuery, _onButtonPressed),
                   RawMaterialButton(
                     child: Text(
                       '+',
