@@ -33,8 +33,6 @@ class _MyCalcPageState extends State<MyCalcPage> {
   var _ansStr = '0';
   List<String> _num;
 
-
-
   @override
   Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context);
