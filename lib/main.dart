@@ -1,5 +1,7 @@
+import 'package:calculatorflutterapp/provider/button_values.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 import 'constant_terms.dart';
 
 import 'widgets/buttonType1.dart';
@@ -12,14 +14,19 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Calculator',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<ButtonBloc>.value(value: ButtonBloc())
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Calculator',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+        ),
+        home: MyCalcPage(),
       ),
-      home: MyCalcPage(),
     );
   }
 }
@@ -30,13 +37,15 @@ class MyCalcPage extends StatefulWidget {
 }
 
 class _MyCalcPageState extends State<MyCalcPage> {
-  var _ansStr = '0';
+  // var buttonBloc.ansVal = '0';
   List<String> _num;
+  ButtonBloc buttonBloc;
 
   @override
   Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context);
     final curScaleFactor = mediaQuery.textScaleFactor;
+    buttonBloc = Provider.of<ButtonBloc>(context);
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
     ]);
@@ -59,16 +68,18 @@ class _MyCalcPageState extends State<MyCalcPage> {
                     // Display Container
                     constraints: BoxConstraints.expand(
                       // Creating a boxed container
-                      height: (mediaQuery.size.height- mediaQuery.padding.top) * 0.3,
+                      height:
+                          (mediaQuery.size.height - mediaQuery.padding.top) *
+                              0.3,
                     ),
                     alignment: Alignment.bottomRight,
                     // Aligning the text to the bottom right of our display screen
                     color: Colors.black,
                     // Setting the background color of the container
                     child: Text(
-                      _ansStr,
+                      buttonBloc.ansVal,
                       style: TextStyle(
-                        // Styling the text
+                          // Styling the text
                           fontSize: 60.0 * curScaleFactor,
                           color: Colors.white),
                       textAlign: TextAlign.right,
@@ -78,20 +89,25 @@ class _MyCalcPageState extends State<MyCalcPage> {
               ),
             ),
             SizedBox(
-              height: (mediaQuery.size.height- mediaQuery.padding.top) * 0.02,
+              height: (mediaQuery.size.height - mediaQuery.padding.top) * 0.02,
             ),
             Container(
-              margin: EdgeInsets.only(left: (mediaQuery.size.height- mediaQuery.padding.top) * 0.045, right: (mediaQuery.size.height- mediaQuery.padding.top) * 0.045,),
+              margin: EdgeInsets.only(
+                left: (mediaQuery.size.height - mediaQuery.padding.top) * 0.045,
+                right:
+                    (mediaQuery.size.height - mediaQuery.padding.top) * 0.045,
+              ),
               child: Row(
                 children: <Widget>[
                   RawMaterialButton(
                     child: Text(
                       'AC',
-                      style: TextStyle(color: Colors.black, fontSize: 32 * curScaleFactor),
+                      style: TextStyle(
+                          color: Colors.black, fontSize: 32 * curScaleFactor),
                     ),
                     onPressed: () {
                       setState(() {
-                        _ansStr = "0";
+                        buttonBloc.ansVal = "0";
                       });
                     },
                     elevation: 2.0,
@@ -102,12 +118,13 @@ class _MyCalcPageState extends State<MyCalcPage> {
                   RawMaterialButton(
                     child: Text(
                       '+/−',
-                      style: TextStyle(color: Colors.black, fontSize: 32 * curScaleFactor),
+                      style: TextStyle(
+                          color: Colors.black, fontSize: 32 * curScaleFactor),
                     ),
                     onPressed: () {
-                      var val = -1 * (int.parse(_ansStr));
+                      var val = -1 * (int.parse(buttonBloc.ansVal));
                       setState(() {
-                        _ansStr = val.toString();
+                        buttonBloc.ansVal = val.toString();
                       });
                     },
                     elevation: 2.0,
@@ -118,12 +135,13 @@ class _MyCalcPageState extends State<MyCalcPage> {
                   RawMaterialButton(
                     child: Text(
                       '%',
-                      style: TextStyle(color: Colors.black, fontSize: 32 * curScaleFactor),
+                      style: TextStyle(
+                          color: Colors.black, fontSize: 32 * curScaleFactor),
                     ),
                     onPressed: () {
-                      var val = (double.parse(_ansStr)) / 100;
+                      var val = (double.parse(buttonBloc.ansVal)) / 100;
                       setState(() {
-                        _ansStr = val.toString();
+                        buttonBloc.ansVal = val.toString();
                       });
                     },
                     elevation: 2.0,
@@ -134,16 +152,18 @@ class _MyCalcPageState extends State<MyCalcPage> {
                   RawMaterialButton(
                     child: Text(
                       '÷',
-                      style: TextStyle(color: Colors.white, fontSize: 32 * curScaleFactor),
+                      style: TextStyle(
+                          color: Colors.white, fontSize: 32 * curScaleFactor),
                     ),
                     onPressed: () {
                       setState(() {
-                        if (_ansStr.contains('÷') ||
-                            _ansStr.contains('×') ||
-                            _ansStr.contains('−') ||
-                            _ansStr.contains('+')) {} else
-                        if (_ansStr == '0') {} else {
-                          _ansStr = _ansStr + "÷";
+                        if (buttonBloc.ansVal.contains('÷') ||
+                            buttonBloc.ansVal.contains('×') ||
+                            buttonBloc.ansVal.contains('−') ||
+                            buttonBloc.ansVal.contains('+')) {
+                        } else if (buttonBloc.ansVal == '0') {
+                        } else {
+                          buttonBloc.ansVal = buttonBloc.ansVal + "÷";
                         }
                       });
                     },
@@ -156,10 +176,14 @@ class _MyCalcPageState extends State<MyCalcPage> {
               ),
             ),
             SizedBox(
-              height: (mediaQuery.size.height- mediaQuery.padding.top) * 0.03,
+              height: (mediaQuery.size.height - mediaQuery.padding.top) * 0.03,
             ),
             Container(
-              margin: EdgeInsets.only(left: (mediaQuery.size.height- mediaQuery.padding.top) * 0.045, right: (mediaQuery.size.height- mediaQuery.padding.top) * 0.045,),
+              margin: EdgeInsets.only(
+                left: (mediaQuery.size.height - mediaQuery.padding.top) * 0.045,
+                right:
+                    (mediaQuery.size.height - mediaQuery.padding.top) * 0.045,
+              ),
               child: Row(
                 children: <Widget>[
 //                  RawMaterialButton(
@@ -169,10 +193,10 @@ class _MyCalcPageState extends State<MyCalcPage> {
 //                    ),
 //                    onPressed: () {
 //                      setState(() {
-//                        if (_ansStr == "0") {
-//                          _ansStr = "7";
+//                        if (buttonBloc.ansVal == "0") {
+//                          buttonBloc.ansVal = "7";
 //                        } else {
-//                          _ansStr = _ansStr + "7";
+//                          buttonBloc.ansVal = buttonBloc.ansVal + "7";
 //                        }
 //                      });
 //                    },
@@ -181,18 +205,19 @@ class _MyCalcPageState extends State<MyCalcPage> {
 //                    padding: EdgeInsets.all(17.5),
 //                    shape: CircleBorder(),
 //                  ),
-                  ButtonType1(_ansStr, "7", mediaQuery),
+                  ButtonType1(buttonBloc.ansVal, "7", mediaQuery),
                   RawMaterialButton(
                     child: Text(
                       '8',
-                      style: TextStyle(color: Colors.white, fontSize: 28 * curScaleFactor),
+                      style: TextStyle(
+                          color: Colors.white, fontSize: 28 * curScaleFactor),
                     ),
                     onPressed: () {
                       setState(() {
-                        if (_ansStr == "0") {
-                          _ansStr = "8";
+                        if (buttonBloc.ansVal == "0") {
+                          buttonBloc.ansVal = "8";
                         } else {
-                          _ansStr = _ansStr + "8";
+                          buttonBloc.ansVal = buttonBloc.ansVal + "8";
                         }
                       });
                     },
@@ -204,14 +229,15 @@ class _MyCalcPageState extends State<MyCalcPage> {
                   RawMaterialButton(
                     child: Text(
                       '9',
-                      style: TextStyle(color: Colors.white, fontSize: 28 * curScaleFactor),
+                      style: TextStyle(
+                          color: Colors.white, fontSize: 28 * curScaleFactor),
                     ),
                     onPressed: () {
                       setState(() {
-                        if (_ansStr == "0") {
-                          _ansStr = "9";
+                        if (buttonBloc.ansVal == "0") {
+                          buttonBloc.ansVal = "9";
                         } else {
-                          _ansStr = _ansStr + "9";
+                          buttonBloc.ansVal = buttonBloc.ansVal + "9";
                         }
                       });
                     },
@@ -223,16 +249,18 @@ class _MyCalcPageState extends State<MyCalcPage> {
                   RawMaterialButton(
                     child: Text(
                       '×',
-                      style: TextStyle(color: Colors.white, fontSize: 32 * curScaleFactor),
+                      style: TextStyle(
+                          color: Colors.white, fontSize: 32 * curScaleFactor),
                     ),
                     onPressed: () {
                       setState(() {
-                        if (_ansStr.contains('÷') ||
-                            _ansStr.contains('×') ||
-                            _ansStr.contains('−') ||
-                            _ansStr.contains('+')) {} else
-                        if (_ansStr == '0') {} else {
-                          _ansStr = _ansStr + "×";
+                        if (buttonBloc.ansVal.contains('÷') ||
+                            buttonBloc.ansVal.contains('×') ||
+                            buttonBloc.ansVal.contains('−') ||
+                            buttonBloc.ansVal.contains('+')) {
+                        } else if (buttonBloc.ansVal == '0') {
+                        } else {
+                          buttonBloc.ansVal = buttonBloc.ansVal + "×";
                         }
                       });
                     },
@@ -245,23 +273,28 @@ class _MyCalcPageState extends State<MyCalcPage> {
               ),
             ),
             SizedBox(
-              height: (mediaQuery.size.height- mediaQuery.padding.top) * 0.03,
+              height: (mediaQuery.size.height - mediaQuery.padding.top) * 0.03,
             ),
             Container(
-              margin: EdgeInsets.only(left: (mediaQuery.size.height- mediaQuery.padding.top) * 0.045, right: (mediaQuery.size.height- mediaQuery.padding.top) * 0.045,),
+              margin: EdgeInsets.only(
+                left: (mediaQuery.size.height - mediaQuery.padding.top) * 0.045,
+                right:
+                    (mediaQuery.size.height - mediaQuery.padding.top) * 0.045,
+              ),
               child: Row(
                 children: <Widget>[
                   RawMaterialButton(
                     child: Text(
                       '4',
-                      style: TextStyle(color: Colors.white, fontSize: 28 * curScaleFactor),
+                      style: TextStyle(
+                          color: Colors.white, fontSize: 28 * curScaleFactor),
                     ),
                     onPressed: () {
                       setState(() {
-                        if (_ansStr == "0") {
-                          _ansStr = "4";
+                        if (buttonBloc.ansVal == "0") {
+                          buttonBloc.ansVal = "4";
                         } else {
-                          _ansStr = _ansStr + "4";
+                          buttonBloc.ansVal = buttonBloc.ansVal + "4";
                         }
                       });
                     },
@@ -273,14 +306,15 @@ class _MyCalcPageState extends State<MyCalcPage> {
                   RawMaterialButton(
                     child: Text(
                       '5',
-                      style: TextStyle(color: Colors.white, fontSize: 28 * curScaleFactor),
+                      style: TextStyle(
+                          color: Colors.white, fontSize: 28 * curScaleFactor),
                     ),
                     onPressed: () {
                       setState(() {
-                        if (_ansStr == "0") {
-                          _ansStr = "5";
+                        if (buttonBloc.ansVal == "0") {
+                          buttonBloc.ansVal = "5";
                         } else {
-                          _ansStr = _ansStr + "5";
+                          buttonBloc.ansVal = buttonBloc.ansVal + "5";
                         }
                       });
                     },
@@ -296,10 +330,10 @@ class _MyCalcPageState extends State<MyCalcPage> {
                     ),
                     onPressed: () {
                       setState(() {
-                        if (_ansStr == "0") {
-                          _ansStr = "6";
+                        if (buttonBloc.ansVal == "0") {
+                          buttonBloc.ansVal = "6";
                         } else {
-                          _ansStr = _ansStr + "6";
+                          buttonBloc.ansVal = buttonBloc.ansVal + "6";
                         }
                       });
                     },
@@ -311,16 +345,18 @@ class _MyCalcPageState extends State<MyCalcPage> {
                   RawMaterialButton(
                     child: Text(
                       '−',
-                      style: TextStyle(color: Colors.white, fontSize: 32 * curScaleFactor),
+                      style: TextStyle(
+                          color: Colors.white, fontSize: 32 * curScaleFactor),
                     ),
                     onPressed: () {
                       setState(() {
-                        if (_ansStr.contains('÷') ||
-                            _ansStr.contains('×') ||
-                            _ansStr.contains('−') ||
-                            _ansStr.contains('+')) {} else
-                        if (_ansStr == '0') {} else {
-                          _ansStr = _ansStr + "−";
+                        if (buttonBloc.ansVal.contains('÷') ||
+                            buttonBloc.ansVal.contains('×') ||
+                            buttonBloc.ansVal.contains('−') ||
+                            buttonBloc.ansVal.contains('+')) {
+                        } else if (buttonBloc.ansVal == '0') {
+                        } else {
+                          buttonBloc.ansVal = buttonBloc.ansVal + "−";
                         }
                       });
                     },
@@ -333,23 +369,28 @@ class _MyCalcPageState extends State<MyCalcPage> {
               ),
             ),
             SizedBox(
-              height: (mediaQuery.size.height- mediaQuery.padding.top) * 0.03,
+              height: (mediaQuery.size.height - mediaQuery.padding.top) * 0.03,
             ),
             Container(
-              margin: EdgeInsets.only(left: (mediaQuery.size.height- mediaQuery.padding.top) * 0.045, right: (mediaQuery.size.height- mediaQuery.padding.top) * 0.045,),
+              margin: EdgeInsets.only(
+                left: (mediaQuery.size.height - mediaQuery.padding.top) * 0.045,
+                right:
+                    (mediaQuery.size.height - mediaQuery.padding.top) * 0.045,
+              ),
               child: Row(
                 children: <Widget>[
                   RawMaterialButton(
                     child: Text(
                       '1',
-                      style: TextStyle(color: Colors.white, fontSize: 28 * curScaleFactor),
+                      style: TextStyle(
+                          color: Colors.white, fontSize: 28 * curScaleFactor),
                     ),
                     onPressed: () {
                       setState(() {
-                        if (_ansStr == "0") {
-                          _ansStr = "1";
+                        if (buttonBloc.ansVal == "0") {
+                          buttonBloc.ansVal = "1";
                         } else {
-                          _ansStr = _ansStr + "1";
+                          buttonBloc.ansVal = buttonBloc.ansVal + "1";
                         }
                       });
                     },
@@ -361,14 +402,15 @@ class _MyCalcPageState extends State<MyCalcPage> {
                   RawMaterialButton(
                     child: Text(
                       '2',
-                      style: TextStyle(color: Colors.white, fontSize: 28 * curScaleFactor),
+                      style: TextStyle(
+                          color: Colors.white, fontSize: 28 * curScaleFactor),
                     ),
                     onPressed: () {
                       setState(() {
-                        if (_ansStr == "0") {
-                          _ansStr = "2";
+                        if (buttonBloc.ansVal == "0") {
+                          buttonBloc.ansVal = "2";
                         } else {
-                          _ansStr = _ansStr + "2";
+                          buttonBloc.ansVal = buttonBloc.ansVal + "2";
                         }
                       });
                     },
@@ -380,14 +422,15 @@ class _MyCalcPageState extends State<MyCalcPage> {
                   RawMaterialButton(
                     child: Text(
                       '3',
-                      style: TextStyle(color: Colors.white, fontSize: 28 * curScaleFactor),
+                      style: TextStyle(
+                          color: Colors.white, fontSize: 28 * curScaleFactor),
                     ),
                     onPressed: () {
                       setState(() {
-                        if (_ansStr == "0") {
-                          _ansStr = "3";
+                        if (buttonBloc.ansVal == "0") {
+                          buttonBloc.ansVal = "3";
                         } else {
-                          _ansStr = _ansStr + "3";
+                          buttonBloc.ansVal = buttonBloc.ansVal + "3";
                         }
                       });
                     },
@@ -399,16 +442,18 @@ class _MyCalcPageState extends State<MyCalcPage> {
                   RawMaterialButton(
                     child: Text(
                       '+',
-                      style: TextStyle(color: Colors.white, fontSize: 32 * curScaleFactor),
+                      style: TextStyle(
+                          color: Colors.white, fontSize: 32 * curScaleFactor),
                     ),
                     onPressed: () {
                       setState(() {
-                        if (_ansStr.contains('÷') ||
-                            _ansStr.contains('×') ||
-                            _ansStr.contains('−') ||
-                            _ansStr.contains('+')) {} else
-                        if (_ansStr == '0') {} else {
-                          _ansStr = _ansStr + "+";
+                        if (buttonBloc.ansVal.contains('÷') ||
+                            buttonBloc.ansVal.contains('×') ||
+                            buttonBloc.ansVal.contains('−') ||
+                            buttonBloc.ansVal.contains('+')) {
+                        } else if (buttonBloc.ansVal == '0') {
+                        } else {
+                          buttonBloc.ansVal = buttonBloc.ansVal + "+";
                         }
                       });
                     },
@@ -421,10 +466,15 @@ class _MyCalcPageState extends State<MyCalcPage> {
               ),
             ),
             SizedBox(
-              height: (mediaQuery.size.height- mediaQuery.padding.top) * 0.03,
+              height: (mediaQuery.size.height - mediaQuery.padding.top) * 0.03,
             ),
             Container(
-              margin: EdgeInsets.only(left: (mediaQuery.size.height- mediaQuery.padding.top) * 0.0455, right: (mediaQuery.size.height- mediaQuery.padding.top) * 0.0455,),
+              margin: EdgeInsets.only(
+                left:
+                    (mediaQuery.size.height - mediaQuery.padding.top) * 0.0455,
+                right:
+                    (mediaQuery.size.height - mediaQuery.padding.top) * 0.0455,
+              ),
               child: Row(
                 children: <Widget>[
                   Container(
@@ -432,12 +482,13 @@ class _MyCalcPageState extends State<MyCalcPage> {
                     child: RawMaterialButton(
                       child: Text(
                         '0',
-                        style: TextStyle(color: Colors.white, fontSize: 28 * curScaleFactor),
+                        style: TextStyle(
+                            color: Colors.white, fontSize: 28 * curScaleFactor),
                       ),
                       onPressed: () {
                         setState(() {
-                          if (_ansStr != "0") {
-                            _ansStr = _ansStr + "0";
+                          if (buttonBloc.ansVal != "0") {
+                            buttonBloc.ansVal = buttonBloc.ansVal + "0";
                           }
                         });
                       },
@@ -451,17 +502,18 @@ class _MyCalcPageState extends State<MyCalcPage> {
                   RawMaterialButton(
                     child: Text(
                       '.',
-                      style: TextStyle(color: Colors.white, fontSize: 28 * curScaleFactor),
+                      style: TextStyle(
+                          color: Colors.white, fontSize: 28 * curScaleFactor),
                     ),
                     onPressed: () {
                       setState(() {
-                        if ( _ansStr.contains('÷') ||
-                            _ansStr.contains('×') ||
-                            _ansStr.contains('−') ||
-                            _ansStr.contains('+')) {
-                          _ansStr = _ansStr + ".";
+                        if (buttonBloc.ansVal.contains('÷') ||
+                            buttonBloc.ansVal.contains('×') ||
+                            buttonBloc.ansVal.contains('−') ||
+                            buttonBloc.ansVal.contains('+')) {
+                          buttonBloc.ansVal = buttonBloc.ansVal + ".";
                         } else {
-                          _ansStr = _ansStr + ".";
+                          buttonBloc.ansVal = buttonBloc.ansVal + ".";
                         }
                       });
                     },
@@ -473,32 +525,33 @@ class _MyCalcPageState extends State<MyCalcPage> {
                   RawMaterialButton(
                     child: Text(
                       '=',
-                      style: TextStyle(color: Colors.white, fontSize: 32 * curScaleFactor),
+                      style: TextStyle(
+                          color: Colors.white, fontSize: 32 * curScaleFactor),
                     ),
                     onPressed: () {
                       setState(() {
-                        if (_ansStr.contains('÷')) {
-                          _num = _ansStr.split('÷');
-                          _ansStr =
+                        if (buttonBloc.ansVal.contains('÷')) {
+                          _num = buttonBloc.ansVal.split('÷');
+                          buttonBloc.ansVal =
                               (double.parse(_num[0]) / double.parse(_num[1]))
                                   .toString();
-                        } else if (_ansStr.contains('×')) {
-                          _num = _ansStr.split('×');
-                          _ansStr =
+                        } else if (buttonBloc.ansVal.contains('×')) {
+                          _num = buttonBloc.ansVal.split('×');
+                          buttonBloc.ansVal =
                               (double.parse(_num[0]) * double.parse(_num[1]))
                                   .toString();
-                        } else if (_ansStr.contains('−')) {
-                          _num = _ansStr.split('−');
-                          _ansStr =
+                        } else if (buttonBloc.ansVal.contains('−')) {
+                          _num = buttonBloc.ansVal.split('−');
+                          buttonBloc.ansVal =
                               (double.parse(_num[0]) - double.parse(_num[1]))
                                   .toString();
-                        } else if (_ansStr.contains('+')) {
-                          _num = _ansStr.split('+');
-                          _ansStr =
+                        } else if (buttonBloc.ansVal.contains('+')) {
+                          _num = buttonBloc.ansVal.split('+');
+                          buttonBloc.ansVal =
                               (double.parse(_num[0]) + double.parse(_num[1]))
                                   .toString();
                         } else {
-                          _ansStr = _ansStr;
+                          buttonBloc.ansVal = buttonBloc.ansVal;
                         }
                       });
                     },
