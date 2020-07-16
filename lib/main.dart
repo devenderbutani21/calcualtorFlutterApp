@@ -35,7 +35,7 @@ class _MyCalcPageState extends State<MyCalcPage> {
 
   void _onButtonPressed(String brnStr) {
     setState(() {
-      if(['0','1','2','3','4','5','6','7','8','9'].contains(brnStr))
+      if (['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'].contains(brnStr))
         _ansStr = (_ansStr == '0') ? brnStr : _ansStr + brnStr;
     });
   }
@@ -66,7 +66,9 @@ class _MyCalcPageState extends State<MyCalcPage> {
                     // Display Container
                     constraints: BoxConstraints.expand(
                       // Creating a boxed container
-                      height: (mediaQuery.size.height- mediaQuery.padding.top) * 0.3,
+                      height:
+                          (mediaQuery.size.height - mediaQuery.padding.top) *
+                              0.3,
                     ),
                     alignment: Alignment.bottomRight,
                     // Aligning the text to the bottom right of our display screen
@@ -75,7 +77,7 @@ class _MyCalcPageState extends State<MyCalcPage> {
                     child: Text(
                       _ansStr,
                       style: TextStyle(
-                        // Styling the text
+                          // Styling the text
                           fontSize: 60.0 * curScaleFactor,
                           color: Colors.white),
                       textAlign: TextAlign.right,
@@ -85,16 +87,21 @@ class _MyCalcPageState extends State<MyCalcPage> {
               ),
             ),
             SizedBox(
-              height: (mediaQuery.size.height- mediaQuery.padding.top) * 0.02,
+              height: (mediaQuery.size.height - mediaQuery.padding.top) * 0.02,
             ),
             Container(
-              margin: EdgeInsets.only(left: (mediaQuery.size.height- mediaQuery.padding.top) * 0.045, right: (mediaQuery.size.height- mediaQuery.padding.top) * 0.045,),
+              margin: EdgeInsets.only(
+                left: (mediaQuery.size.height - mediaQuery.padding.top) * 0.045,
+                right:
+                    (mediaQuery.size.height - mediaQuery.padding.top) * 0.045,
+              ),
               child: Row(
                 children: <Widget>[
                   RawMaterialButton(
                     child: Text(
                       'AC',
-                      style: TextStyle(color: Colors.black, fontSize: 32 * curScaleFactor),
+                      style: TextStyle(
+                          color: Colors.black, fontSize: 32 * curScaleFactor),
                     ),
                     onPressed: () {
                       setState(() {
@@ -109,7 +116,8 @@ class _MyCalcPageState extends State<MyCalcPage> {
                   RawMaterialButton(
                     child: Text(
                       '+/−',
-                      style: TextStyle(color: Colors.black, fontSize: 32 * curScaleFactor),
+                      style: TextStyle(
+                          color: Colors.black, fontSize: 32 * curScaleFactor),
                     ),
                     onPressed: () {
                       var val = -1 * (int.parse(_ansStr));
@@ -125,7 +133,8 @@ class _MyCalcPageState extends State<MyCalcPage> {
                   RawMaterialButton(
                     child: Text(
                       '%',
-                      style: TextStyle(color: Colors.black, fontSize: 32 * curScaleFactor),
+                      style: TextStyle(
+                          color: Colors.black, fontSize: 32 * curScaleFactor),
                     ),
                     onPressed: () {
                       var val = (double.parse(_ansStr)) / 100;
@@ -141,15 +150,16 @@ class _MyCalcPageState extends State<MyCalcPage> {
                   RawMaterialButton(
                     child: Text(
                       '÷',
-                      style: TextStyle(color: Colors.white, fontSize: 32 * curScaleFactor),
+                      style: TextStyle(
+                          color: Colors.white, fontSize: 32 * curScaleFactor),
                     ),
                     onPressed: () {
                       setState(() {
                         if (_ansStr.contains('÷') ||
                             _ansStr.contains('×') ||
                             _ansStr.contains('−') ||
-                            _ansStr.contains('+')) {} else
-                        if (_ansStr == '0') {} else {
+                            _ansStr.contains('+') || _ansStr == '0') {
+                        } else {
                           _ansStr = _ansStr + "÷";
                         }
                       });
@@ -163,10 +173,14 @@ class _MyCalcPageState extends State<MyCalcPage> {
               ),
             ),
             SizedBox(
-              height: (mediaQuery.size.height- mediaQuery.padding.top) * 0.03,
+              height: (mediaQuery.size.height - mediaQuery.padding.top) * 0.03,
             ),
             Container(
-              margin: EdgeInsets.only(left: (mediaQuery.size.height- mediaQuery.padding.top) * 0.045, right: (mediaQuery.size.height- mediaQuery.padding.top) * 0.045,),
+              margin: EdgeInsets.only(
+                left: (mediaQuery.size.height - mediaQuery.padding.top) * 0.045,
+                right:
+                    (mediaQuery.size.height - mediaQuery.padding.top) * 0.045,
+              ),
               child: Row(
                 children: <Widget>[
                   ButtonType1("7", mediaQuery, _onButtonPressed),
@@ -175,15 +189,17 @@ class _MyCalcPageState extends State<MyCalcPage> {
                   RawMaterialButton(
                     child: Text(
                       '×',
-                      style: TextStyle(color: Colors.white, fontSize: 32 * curScaleFactor),
+                      style: TextStyle(
+                          color: Colors.white, fontSize: 32 * curScaleFactor),
                     ),
                     onPressed: () {
                       setState(() {
                         if (_ansStr.contains('÷') ||
                             _ansStr.contains('×') ||
                             _ansStr.contains('−') ||
-                            _ansStr.contains('+')) {} else
-                        if (_ansStr == '0') {} else {
+                            _ansStr.contains('+') ||
+                            _ansStr == '0') {
+                        } else {
                           _ansStr = _ansStr + "×";
                         }
                       });
@@ -197,10 +213,14 @@ class _MyCalcPageState extends State<MyCalcPage> {
               ),
             ),
             SizedBox(
-              height: (mediaQuery.size.height- mediaQuery.padding.top) * 0.03,
+              height: (mediaQuery.size.height - mediaQuery.padding.top) * 0.03,
             ),
             Container(
-              margin: EdgeInsets.only(left: (mediaQuery.size.height- mediaQuery.padding.top) * 0.045, right: (mediaQuery.size.height- mediaQuery.padding.top) * 0.045,),
+              margin: EdgeInsets.only(
+                left: (mediaQuery.size.height - mediaQuery.padding.top) * 0.045,
+                right:
+                    (mediaQuery.size.height - mediaQuery.padding.top) * 0.045,
+              ),
               child: Row(
                 children: <Widget>[
                   ButtonType1("4", mediaQuery, _onButtonPressed),
@@ -209,15 +229,17 @@ class _MyCalcPageState extends State<MyCalcPage> {
                   RawMaterialButton(
                     child: Text(
                       '−',
-                      style: TextStyle(color: Colors.white, fontSize: 32 * curScaleFactor),
+                      style: TextStyle(
+                          color: Colors.white, fontSize: 32 * curScaleFactor),
                     ),
                     onPressed: () {
                       setState(() {
                         if (_ansStr.contains('÷') ||
                             _ansStr.contains('×') ||
                             _ansStr.contains('−') ||
-                            _ansStr.contains('+')) {} else
-                        if (_ansStr == '0') {} else {
+                            _ansStr.contains('+') ||
+                            _ansStr == '0') {
+                        } else {
                           _ansStr = _ansStr + "−";
                         }
                       });
@@ -231,10 +253,14 @@ class _MyCalcPageState extends State<MyCalcPage> {
               ),
             ),
             SizedBox(
-              height: (mediaQuery.size.height- mediaQuery.padding.top) * 0.03,
+              height: (mediaQuery.size.height - mediaQuery.padding.top) * 0.03,
             ),
             Container(
-              margin: EdgeInsets.only(left: (mediaQuery.size.height- mediaQuery.padding.top) * 0.045, right: (mediaQuery.size.height- mediaQuery.padding.top) * 0.045,),
+              margin: EdgeInsets.only(
+                left: (mediaQuery.size.height - mediaQuery.padding.top) * 0.045,
+                right:
+                    (mediaQuery.size.height - mediaQuery.padding.top) * 0.045,
+              ),
               child: Row(
                 children: <Widget>[
                   ButtonType1("1", mediaQuery, _onButtonPressed),
@@ -243,15 +269,17 @@ class _MyCalcPageState extends State<MyCalcPage> {
                   RawMaterialButton(
                     child: Text(
                       '+',
-                      style: TextStyle(color: Colors.white, fontSize: 32 * curScaleFactor),
+                      style: TextStyle(
+                          color: Colors.white, fontSize: 32 * curScaleFactor),
                     ),
                     onPressed: () {
                       setState(() {
                         if (_ansStr.contains('÷') ||
                             _ansStr.contains('×') ||
                             _ansStr.contains('−') ||
-                            _ansStr.contains('+')) {} else
-                        if (_ansStr == '0') {} else {
+                            _ansStr.contains('+') ||
+                            _ansStr == '0') {
+                        } else {
                           _ansStr = _ansStr + "+";
                         }
                       });
@@ -265,10 +293,15 @@ class _MyCalcPageState extends State<MyCalcPage> {
               ),
             ),
             SizedBox(
-              height: (mediaQuery.size.height- mediaQuery.padding.top) * 0.03,
+              height: (mediaQuery.size.height - mediaQuery.padding.top) * 0.03,
             ),
             Container(
-              margin: EdgeInsets.only(left: (mediaQuery.size.height- mediaQuery.padding.top) * 0.0455, right: (mediaQuery.size.height- mediaQuery.padding.top) * 0.0455,),
+              margin: EdgeInsets.only(
+                left:
+                    (mediaQuery.size.height - mediaQuery.padding.top) * 0.0455,
+                right:
+                    (mediaQuery.size.height - mediaQuery.padding.top) * 0.0455,
+              ),
               child: Row(
                 children: <Widget>[
                   Container(
@@ -276,7 +309,8 @@ class _MyCalcPageState extends State<MyCalcPage> {
                     child: RawMaterialButton(
                       child: Text(
                         '0',
-                        style: TextStyle(color: Colors.white, fontSize: 28 * curScaleFactor),
+                        style: TextStyle(
+                            color: Colors.white, fontSize: 28 * curScaleFactor),
                       ),
                       onPressed: () {
                         setState(() {
@@ -295,11 +329,12 @@ class _MyCalcPageState extends State<MyCalcPage> {
                   RawMaterialButton(
                     child: Text(
                       '.',
-                      style: TextStyle(color: Colors.white, fontSize: 28 * curScaleFactor),
+                      style: TextStyle(
+                          color: Colors.white, fontSize: 28 * curScaleFactor),
                     ),
                     onPressed: () {
                       setState(() {
-                        if ( _ansStr.contains('÷') ||
+                        if (_ansStr.contains('÷') ||
                             _ansStr.contains('×') ||
                             _ansStr.contains('−') ||
                             _ansStr.contains('+')) {
@@ -317,7 +352,8 @@ class _MyCalcPageState extends State<MyCalcPage> {
                   RawMaterialButton(
                     child: Text(
                       '=',
-                      style: TextStyle(color: Colors.white, fontSize: 32 * curScaleFactor),
+                      style: TextStyle(
+                          color: Colors.white, fontSize: 32 * curScaleFactor),
                     ),
                     onPressed: () {
                       setState(() {
