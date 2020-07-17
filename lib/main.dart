@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'constant_terms.dart';
 
+import 'constant_terms.dart';
 import 'widgets/buttonType1.dart';
 
 void main() {
@@ -9,7 +9,6 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -33,10 +32,17 @@ class _MyCalcPageState extends State<MyCalcPage> {
   var _ansStr = '0';
   List<String> _num;
 
-  void _onButtonPressed(String brnStr) {
+  void _onButtonPressed(String btnStr) {
     setState(() {
-      if (['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'].contains(brnStr))
-        _ansStr = (_ansStr == '0') ? brnStr : _ansStr + brnStr;
+      if (['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'].contains(btnStr))
+        _ansStr = (_ansStr == '0') ? btnStr : _ansStr + btnStr;
+    });
+  }
+
+  void _onButtonPressed1(String btnStr) {
+    setState(() {
+      if (['÷', '×', '−', '+'].contains(btnStr))
+        _ansStr = (_ansStr.contains(btnStr)) ? _ansStr : _ansStr + btnStr;
     });
   }
 
@@ -110,7 +116,7 @@ class _MyCalcPageState extends State<MyCalcPage> {
                     },
                     elevation: 2.0,
                     fillColor: color1,
-                    padding: EdgeInsets.all(17.5),
+                    padding: EdgeInsets.all(17.5 * curScaleFactor),
                     shape: CircleBorder(),
                   ),
                   RawMaterialButton(
@@ -127,7 +133,7 @@ class _MyCalcPageState extends State<MyCalcPage> {
                     },
                     elevation: 2.0,
                     fillColor: color1,
-                    padding: EdgeInsets.all(17.5),
+                    padding: EdgeInsets.all(17.5 * curScaleFactor),
                     shape: CircleBorder(),
                   ),
                   RawMaterialButton(
@@ -144,31 +150,10 @@ class _MyCalcPageState extends State<MyCalcPage> {
                     },
                     elevation: 2.0,
                     fillColor: color1,
-                    padding: EdgeInsets.all(17.5),
+                    padding: EdgeInsets.all(17.5 * curScaleFactor),
                     shape: CircleBorder(),
                   ),
-                  RawMaterialButton(
-                    child: Text(
-                      '÷',
-                      style: TextStyle(
-                          color: Colors.white, fontSize: 32 * curScaleFactor),
-                    ),
-                    onPressed: () {
-                      setState(() {
-                        if (_ansStr.contains('÷') ||
-                            _ansStr.contains('×') ||
-                            _ansStr.contains('−') ||
-                            _ansStr.contains('+') || _ansStr == '0') {
-                        } else {
-                          _ansStr = _ansStr + "÷";
-                        }
-                      });
-                    },
-                    elevation: 2.0,
-                    fillColor: color3,
-                    padding: EdgeInsets.all(17.5),
-                    shape: CircleBorder(),
-                  )
+                  ButtonType1("÷", mediaQuery, _onButtonPressed1, color3),
                 ],
               ),
             ),
@@ -183,32 +168,10 @@ class _MyCalcPageState extends State<MyCalcPage> {
               ),
               child: Row(
                 children: <Widget>[
-                  ButtonType1("7", mediaQuery, _onButtonPressed),
-                  ButtonType1("8", mediaQuery, _onButtonPressed),
-                  ButtonType1("9", mediaQuery, _onButtonPressed),
-                  RawMaterialButton(
-                    child: Text(
-                      '×',
-                      style: TextStyle(
-                          color: Colors.white, fontSize: 32 * curScaleFactor),
-                    ),
-                    onPressed: () {
-                      setState(() {
-                        if (_ansStr.contains('÷') ||
-                            _ansStr.contains('×') ||
-                            _ansStr.contains('−') ||
-                            _ansStr.contains('+') ||
-                            _ansStr == '0') {
-                        } else {
-                          _ansStr = _ansStr + "×";
-                        }
-                      });
-                    },
-                    elevation: 2.0,
-                    fillColor: color3,
-                    padding: EdgeInsets.all(17.5),
-                    shape: CircleBorder(),
-                  ),
+                  ButtonType1("7", mediaQuery, _onButtonPressed, color2),
+                  ButtonType1("8", mediaQuery, _onButtonPressed, color2),
+                  ButtonType1("9", mediaQuery, _onButtonPressed, color2),
+                  ButtonType1("×", mediaQuery, _onButtonPressed1, color3),
                 ],
               ),
             ),
@@ -223,32 +186,10 @@ class _MyCalcPageState extends State<MyCalcPage> {
               ),
               child: Row(
                 children: <Widget>[
-                  ButtonType1("4", mediaQuery, _onButtonPressed),
-                  ButtonType1("5", mediaQuery, _onButtonPressed),
-                  ButtonType1("6", mediaQuery, _onButtonPressed),
-                  RawMaterialButton(
-                    child: Text(
-                      '−',
-                      style: TextStyle(
-                          color: Colors.white, fontSize: 32 * curScaleFactor),
-                    ),
-                    onPressed: () {
-                      setState(() {
-                        if (_ansStr.contains('÷') ||
-                            _ansStr.contains('×') ||
-                            _ansStr.contains('−') ||
-                            _ansStr.contains('+') ||
-                            _ansStr == '0') {
-                        } else {
-                          _ansStr = _ansStr + "−";
-                        }
-                      });
-                    },
-                    elevation: 2.0,
-                    fillColor: color3,
-                    padding: EdgeInsets.all(17.5),
-                    shape: CircleBorder(),
-                  ),
+                  ButtonType1("4", mediaQuery, _onButtonPressed, color2),
+                  ButtonType1("5", mediaQuery, _onButtonPressed, color2),
+                  ButtonType1("6", mediaQuery, _onButtonPressed, color2),
+                  ButtonType1("−", mediaQuery, _onButtonPressed1, color3),
                 ],
               ),
             ),
@@ -263,32 +204,10 @@ class _MyCalcPageState extends State<MyCalcPage> {
               ),
               child: Row(
                 children: <Widget>[
-                  ButtonType1("1", mediaQuery, _onButtonPressed),
-                  ButtonType1("2", mediaQuery, _onButtonPressed),
-                  ButtonType1("3", mediaQuery, _onButtonPressed),
-                  RawMaterialButton(
-                    child: Text(
-                      '+',
-                      style: TextStyle(
-                          color: Colors.white, fontSize: 32 * curScaleFactor),
-                    ),
-                    onPressed: () {
-                      setState(() {
-                        if (_ansStr.contains('÷') ||
-                            _ansStr.contains('×') ||
-                            _ansStr.contains('−') ||
-                            _ansStr.contains('+') ||
-                            _ansStr == '0') {
-                        } else {
-                          _ansStr = _ansStr + "+";
-                        }
-                      });
-                    },
-                    elevation: 2.0,
-                    fillColor: color3,
-                    padding: EdgeInsets.all(17.5),
-                    shape: CircleBorder(),
-                  )
+                  ButtonType1("1", mediaQuery, _onButtonPressed, color2),
+                  ButtonType1("2", mediaQuery, _onButtonPressed, color2),
+                  ButtonType1("3", mediaQuery, _onButtonPressed, color2),
+                  ButtonType1("+", mediaQuery, _onButtonPressed1, color3),
                 ],
               ),
             ),
@@ -321,9 +240,9 @@ class _MyCalcPageState extends State<MyCalcPage> {
                       },
                       elevation: 2.0,
                       fillColor: color2,
-                      padding: EdgeInsets.all(17.5),
+                      padding: EdgeInsets.all(17.5 * curScaleFactor),
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(36.0)),
+                          borderRadius: BorderRadius.circular(36.0 * curScaleFactor)),
                     ),
                   ),
                   RawMaterialButton(
@@ -346,7 +265,7 @@ class _MyCalcPageState extends State<MyCalcPage> {
                     },
                     elevation: 2.0,
                     fillColor: color2,
-                    padding: EdgeInsets.all(17.5),
+                    padding: EdgeInsets.all(17.5 * curScaleFactor),
                     shape: CircleBorder(),
                   ),
                   RawMaterialButton(
@@ -384,7 +303,7 @@ class _MyCalcPageState extends State<MyCalcPage> {
                     },
                     elevation: 2.0,
                     fillColor: color3,
-                    padding: EdgeInsets.all(17.5),
+                    padding: EdgeInsets.all(17.5 * curScaleFactor),
                     shape: CircleBorder(),
                   )
                 ],

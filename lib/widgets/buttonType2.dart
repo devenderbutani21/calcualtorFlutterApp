@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
+import '.././constant_terms.dart';
 
-class ButtonType1 extends StatefulWidget {
+class ButtonType2 extends StatefulWidget {
   final String val;
   final MediaQueryData mediaQuery;
   final Function callBack;
-  final Color color;
-  ButtonType1(this.val, this.mediaQuery, this.callBack,this.color);
+
+  ButtonType2(this.val, this.mediaQuery, this.callBack);
 
   @override
-  _ButtonType1State createState() => _ButtonType1State();
+  _ButtonType2State createState() => _ButtonType2State();
 }
 
-class _ButtonType1State extends State<ButtonType1> {
+class _ButtonType2State extends State<ButtonType2> {
   @override
   Widget build(BuildContext context) {
     return RawMaterialButton(
@@ -21,8 +22,8 @@ class _ButtonType1State extends State<ButtonType1> {
       ),
       onPressed: () => widget.callBack(widget.val),
       elevation: 2.0,
-      fillColor: widget.color,
-      padding: EdgeInsets.all(17.5 * widget.mediaQuery.textScaleFactor),
+      fillColor: color2,
+      padding: EdgeInsets.all(17.5),
       shape: CircleBorder(),
     );
   }
