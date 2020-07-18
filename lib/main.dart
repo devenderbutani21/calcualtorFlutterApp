@@ -242,7 +242,8 @@ class _MyCalcPageState extends State<MyCalcPage> {
                       fillColor: color2,
                       padding: EdgeInsets.all(17.5 * curScaleFactor),
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(36.0 * curScaleFactor)),
+                          borderRadius:
+                              BorderRadius.circular(36.0 * curScaleFactor)),
                     ),
                   ),
                   RawMaterialButton(
@@ -253,13 +254,8 @@ class _MyCalcPageState extends State<MyCalcPage> {
                     ),
                     onPressed: () {
                       setState(() {
-                        if (_ansStr.contains('÷') ||
-                            _ansStr.contains('×') ||
-                            _ansStr.contains('−') ||
-                            _ansStr.contains('+')) {
-                          _ansStr = _ansStr + ".";
-                        } else {
-                          _ansStr = _ansStr + ".";
+                        if('.'.allMatches(_ansStr).length == 0 || '.'.allMatches(_ansStr, _ansStr.indexOf('÷')).length == 0) {
+                          _ansStr = _ansStr + '.';
                         }
                       });
                     },
