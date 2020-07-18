@@ -61,9 +61,7 @@ class _MyCalcPageState extends State<MyCalcPage> {
             Container(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                // Equal vertical space between all the children of column
                 children: <Widget>[
-                  // the column widget uses the children property
                   Container(
                     margin: EdgeInsets.only(
                       right: mediaQuery.size.width * 0.1,
