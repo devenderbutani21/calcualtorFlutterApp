@@ -72,7 +72,7 @@ class _MyCalcPageState extends State<MyCalcPage> {
                       // Creating a boxed container
                       height:
                           (mediaQuery.size.height - mediaQuery.padding.top) *
-                              0.3,
+                              0.25,
                     ),
                     alignment: Alignment.bottomRight,
                     // Aligning the text to the bottom right of our display screen
@@ -94,11 +94,10 @@ class _MyCalcPageState extends State<MyCalcPage> {
               height: (mediaQuery.size.height - mediaQuery.padding.top) * 0.02,
             ),
             Container(
-              margin: EdgeInsets.only(
-                left: (mediaQuery.size.height - mediaQuery.padding.top) * 0.045,
-                right:
-                    (mediaQuery.size.height - mediaQuery.padding.top) * 0.045,
-              ),
+//              margin: EdgeInsets.only(
+//                left: mediaQuery.size.width * 0.0425,
+//                right: mediaQuery.size.width * 0.0425,
+//              ),
               child: Row(
                 children: <Widget>[
                   RawMaterialButton(
@@ -114,7 +113,7 @@ class _MyCalcPageState extends State<MyCalcPage> {
                     },
                     elevation: 2.0,
                     fillColor: color1,
-                    padding: EdgeInsets.all(17.5 * curScaleFactor),
+                    padding: EdgeInsets.all(((mediaQuery.size.height - mediaQuery.padding.top) + mediaQuery.size.width)/16 * 0.25),
                     shape: CircleBorder(),
                   ),
                   RawMaterialButton(
@@ -131,7 +130,7 @@ class _MyCalcPageState extends State<MyCalcPage> {
                     },
                     elevation: 2.0,
                     fillColor: color1,
-                    padding: EdgeInsets.all(17.5 * curScaleFactor),
+                    padding: EdgeInsets.all(((mediaQuery.size.height - mediaQuery.padding.top) + mediaQuery.size.width)/16 * 0.25),
                     shape: CircleBorder(),
                   ),
                   RawMaterialButton(
@@ -148,7 +147,7 @@ class _MyCalcPageState extends State<MyCalcPage> {
                     },
                     elevation: 2.0,
                     fillColor: color1,
-                    padding: EdgeInsets.all(17.5 * curScaleFactor),
+                    padding: EdgeInsets.all(((mediaQuery.size.height - mediaQuery.padding.top) + mediaQuery.size.width)/16 * 0.25),
                     shape: CircleBorder(),
                   ),
                   ButtonType1("÷", mediaQuery, _onButtonPressed1, color3),
@@ -159,11 +158,10 @@ class _MyCalcPageState extends State<MyCalcPage> {
               height: (mediaQuery.size.height - mediaQuery.padding.top) * 0.03,
             ),
             Container(
-              margin: EdgeInsets.only(
-                left: (mediaQuery.size.height - mediaQuery.padding.top) * 0.045,
-                right:
-                    (mediaQuery.size.height - mediaQuery.padding.top) * 0.045,
-              ),
+//              margin: EdgeInsets.only(
+//                left: mediaQuery.size.width * 0.04,
+//                right: mediaQuery.size.width * 0.04,
+//              ),
               child: Row(
                 children: <Widget>[
                   ButtonType1("7", mediaQuery, _onButtonPressed, color2),
@@ -177,11 +175,10 @@ class _MyCalcPageState extends State<MyCalcPage> {
               height: (mediaQuery.size.height - mediaQuery.padding.top) * 0.03,
             ),
             Container(
-              margin: EdgeInsets.only(
-                left: (mediaQuery.size.height - mediaQuery.padding.top) * 0.045,
-                right:
-                    (mediaQuery.size.height - mediaQuery.padding.top) * 0.045,
-              ),
+//              margin: EdgeInsets.only(
+//                left: mediaQuery.size.width * 0.04,
+//                right: mediaQuery.size.width * 0.04,
+//              ),
               child: Row(
                 children: <Widget>[
                   ButtonType1("4", mediaQuery, _onButtonPressed, color2),
@@ -195,11 +192,10 @@ class _MyCalcPageState extends State<MyCalcPage> {
               height: (mediaQuery.size.height - mediaQuery.padding.top) * 0.03,
             ),
             Container(
-              margin: EdgeInsets.only(
-                left: (mediaQuery.size.height - mediaQuery.padding.top) * 0.045,
-                right:
-                    (mediaQuery.size.height - mediaQuery.padding.top) * 0.045,
-              ),
+//              margin: EdgeInsets.only(
+//                left: mediaQuery.size.width * 0.0425,
+//                right: mediaQuery.size.width * 0.0425,
+//              ),
               child: Row(
                 children: <Widget>[
                   ButtonType1("1", mediaQuery, _onButtonPressed, color2),
@@ -213,16 +209,14 @@ class _MyCalcPageState extends State<MyCalcPage> {
               height: (mediaQuery.size.height - mediaQuery.padding.top) * 0.03,
             ),
             Container(
-              margin: EdgeInsets.only(
-                left:
-                    (mediaQuery.size.height - mediaQuery.padding.top) * 0.0455,
-                right:
-                    (mediaQuery.size.height - mediaQuery.padding.top) * 0.0455,
-              ),
+//              margin: EdgeInsets.only(
+//                left: mediaQuery.size.width * 0.04,
+//                right: mediaQuery.size.width * 0.04,
+//              ),
               child: Row(
                 children: <Widget>[
                   Container(
-                    width: 175,
+                    width: mediaQuery.size.width * 0.485,
                     child: RawMaterialButton(
                       child: Text(
                         '0',
@@ -238,7 +232,7 @@ class _MyCalcPageState extends State<MyCalcPage> {
                       },
                       elevation: 2.0,
                       fillColor: color2,
-                      padding: EdgeInsets.all(17.5 * curScaleFactor),
+                      padding: EdgeInsets.all(((mediaQuery.size.height - mediaQuery.padding.top) + mediaQuery.size.width)/16 * 0.25),
                       shape: RoundedRectangleBorder(
                           borderRadius:
                               BorderRadius.circular(36.0 * curScaleFactor)),
@@ -248,18 +242,22 @@ class _MyCalcPageState extends State<MyCalcPage> {
                     child: Text(
                       '.',
                       style: TextStyle(
-                          color: Colors.white, fontSize: 28 * curScaleFactor),
+                          color: Colors.white, fontSize: 34 * curScaleFactor),
                     ),
                     onPressed: () {
                       setState(() {
-                        if('.'.allMatches(_ansStr).length == 0 || '.'.allMatches(_ansStr, _ansStr.indexOf('÷')).length == 0) {
+                        if ('.'.allMatches(_ansStr).length == 0 ||
+                            '.'
+                                    .allMatches(_ansStr, _ansStr.indexOf('÷'))
+                                    .length ==
+                                0) {
                           _ansStr = _ansStr + '.';
                         }
                       });
                     },
                     elevation: 2.0,
                     fillColor: color2,
-                    padding: EdgeInsets.all(17.5 * curScaleFactor),
+                    padding: EdgeInsets.all(((mediaQuery.size.height - mediaQuery.padding.top) + mediaQuery.size.width)/16 * 0.25),
                     shape: CircleBorder(),
                   ),
                   RawMaterialButton(
@@ -297,7 +295,7 @@ class _MyCalcPageState extends State<MyCalcPage> {
                     },
                     elevation: 2.0,
                     fillColor: color3,
-                    padding: EdgeInsets.all(17.5 * curScaleFactor),
+                    padding: EdgeInsets.all(((mediaQuery.size.height - mediaQuery.padding.top) + mediaQuery.size.width)/16 * 0.25),
                     shape: CircleBorder(),
                   )
                 ],

@@ -22,7 +22,7 @@ class _ButtonType1State extends State<ButtonType1> {
       onPressed: () => widget.callBack(widget.val),
       elevation: 2.0,
       fillColor: widget.color,
-      padding: EdgeInsets.all(17.5 * widget.mediaQuery.textScaleFactor),
+      padding: EdgeInsets.all(((widget.mediaQuery.size.height - widget.mediaQuery.padding.top) + widget.mediaQuery.size.width)/16 * 0.25),
       shape: CircleBorder(),
     );
   }
