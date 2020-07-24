@@ -64,15 +64,15 @@ class _MyCalcPageState extends State<MyCalcPage> {
                 children: <Widget>[
                   Container(
                     margin: EdgeInsets.only(
-                      right: mediaQuery.size.width * 0.1,
-                      left: mediaQuery.size.width * 0.1,
+                      right: mediaQuery.size.width * 0.01,
+                      left: mediaQuery.size.width * 0.01,
                     ),
                     // Display Container
                     constraints: BoxConstraints.expand(
                       // Creating a boxed container
                       height:
-                          (mediaQuery.size.height - mediaQuery.padding.top) *
-                              0.25,
+                      (mediaQuery.size.height - mediaQuery.padding.top) *
+                          0.25,
                     ),
                     alignment: Alignment.bottomRight,
                     // Aligning the text to the bottom right of our display screen
@@ -81,7 +81,7 @@ class _MyCalcPageState extends State<MyCalcPage> {
                     child: Text(
                       _ansStr,
                       style: TextStyle(
-                          // Styling the text
+                        // Styling the text
                           fontSize: 60.0 * curScaleFactor,
                           color: Colors.white),
                       textAlign: TextAlign.right,
@@ -94,12 +94,13 @@ class _MyCalcPageState extends State<MyCalcPage> {
               height: (mediaQuery.size.height - mediaQuery.padding.top) * 0.02,
             ),
             Container(
-//              margin: EdgeInsets.only(
-//                left: mediaQuery.size.width * 0.0425,
-//                right: mediaQuery.size.width * 0.0425,
-//              ),
+              margin: EdgeInsets.only(
+                right: mediaQuery.size.width * 0.01,
+                left: mediaQuery.size.width * 0.01,
+              ),
               child: Row(
                 children: <Widget>[
+                  SizedBox(width: mediaQuery.size.shortestSide*0.0265,),
                   RawMaterialButton(
                     child: Text(
                       'AC',
@@ -113,9 +114,10 @@ class _MyCalcPageState extends State<MyCalcPage> {
                     },
                     elevation: 2.0,
                     fillColor: color1,
-                    padding: EdgeInsets.all(((mediaQuery.size.height - mediaQuery.padding.top) + mediaQuery.size.width)/16 * 0.25),
+                    padding: EdgeInsets.all(mediaQuery.size.shortestSide/20),
                     shape: CircleBorder(),
                   ),
+                  SizedBox(width: mediaQuery.size.shortestSide*0.02,),
                   RawMaterialButton(
                     child: Text(
                       '+/−',
@@ -130,9 +132,10 @@ class _MyCalcPageState extends State<MyCalcPage> {
                     },
                     elevation: 2.0,
                     fillColor: color1,
-                    padding: EdgeInsets.all(((mediaQuery.size.height - mediaQuery.padding.top) + mediaQuery.size.width)/16 * 0.25),
+                    padding: EdgeInsets.all(mediaQuery.size.shortestSide/20),
                     shape: CircleBorder(),
                   ),
+                  SizedBox(width: mediaQuery.size.shortestSide*0.02,),
                   RawMaterialButton(
                     child: Text(
                       '%',
@@ -140,6 +143,27 @@ class _MyCalcPageState extends State<MyCalcPage> {
                           color: Colors.black, fontSize: 32 * curScaleFactor),
                     ),
                     onPressed: () {
+                      if (_ansStr.contains('÷')) {
+                        _num = _ansStr.split('÷');
+                        _ansStr =
+                            (double.parse(_num[0]) / double.parse(_num[1]))
+                                .toString();
+                      } else if (_ansStr.contains('×')) {
+                        _num = _ansStr.split('×');
+                        _ansStr =
+                            (double.parse(_num[0]) * double.parse(_num[1]))
+                                .toString();
+                      } else if (_ansStr.contains('−')) {
+                        _num = _ansStr.split('−');
+                        _ansStr =
+                            (double.parse(_num[0]) - double.parse(_num[1]))
+                                .toString();
+                      } else if (_ansStr.contains('+')) {
+                        _num = _ansStr.split('+');
+                        _ansStr =
+                            (double.parse(_num[0]) + double.parse(_num[1]))
+                                .toString();
+                      }
                       var val = (double.parse(_ansStr)) / 100;
                       setState(() {
                         _ansStr = val.toString();
@@ -147,10 +171,12 @@ class _MyCalcPageState extends State<MyCalcPage> {
                     },
                     elevation: 2.0,
                     fillColor: color1,
-                    padding: EdgeInsets.all(((mediaQuery.size.height - mediaQuery.padding.top) + mediaQuery.size.width)/16 * 0.25),
+                    padding: EdgeInsets.all(mediaQuery.size.shortestSide/20),
                     shape: CircleBorder(),
                   ),
+                  SizedBox(width: mediaQuery.size.shortestSide*0.02,),
                   ButtonType1("÷", mediaQuery, _onButtonPressed1, color3),
+                  SizedBox(width: mediaQuery.size.shortestSide*0.026,),
                 ],
               ),
             ),
@@ -158,16 +184,21 @@ class _MyCalcPageState extends State<MyCalcPage> {
               height: (mediaQuery.size.height - mediaQuery.padding.top) * 0.03,
             ),
             Container(
-//              margin: EdgeInsets.only(
-//                left: mediaQuery.size.width * 0.04,
-//                right: mediaQuery.size.width * 0.04,
-//              ),
+              margin: EdgeInsets.only(
+                right: mediaQuery.size.width * 0.01,
+                left: mediaQuery.size.width * 0.01,
+              ),
               child: Row(
                 children: <Widget>[
+                  SizedBox(width: mediaQuery.size.shortestSide*0.0265,),
                   ButtonType1("7", mediaQuery, _onButtonPressed, color2),
+                  SizedBox(width: mediaQuery.size.shortestSide*0.02,),
                   ButtonType1("8", mediaQuery, _onButtonPressed, color2),
+                  SizedBox(width: mediaQuery.size.shortestSide*0.02,),
                   ButtonType1("9", mediaQuery, _onButtonPressed, color2),
+                  SizedBox(width: mediaQuery.size.shortestSide*0.02,),
                   ButtonType1("×", mediaQuery, _onButtonPressed1, color3),
+                  SizedBox(width: mediaQuery.size.shortestSide*0.026,),
                 ],
               ),
             ),
@@ -175,16 +206,21 @@ class _MyCalcPageState extends State<MyCalcPage> {
               height: (mediaQuery.size.height - mediaQuery.padding.top) * 0.03,
             ),
             Container(
-//              margin: EdgeInsets.only(
-//                left: mediaQuery.size.width * 0.04,
-//                right: mediaQuery.size.width * 0.04,
-//              ),
+              margin: EdgeInsets.only(
+                right: mediaQuery.size.width * 0.01,
+                left: mediaQuery.size.width * 0.01,
+              ),
               child: Row(
                 children: <Widget>[
+                  SizedBox(width: mediaQuery.size.shortestSide*0.0265,),
                   ButtonType1("4", mediaQuery, _onButtonPressed, color2),
+                  SizedBox(width: mediaQuery.size.shortestSide*0.02,),
                   ButtonType1("5", mediaQuery, _onButtonPressed, color2),
+                  SizedBox(width: mediaQuery.size.shortestSide*0.02,),
                   ButtonType1("6", mediaQuery, _onButtonPressed, color2),
+                  SizedBox(width: mediaQuery.size.shortestSide*0.02,),
                   ButtonType1("−", mediaQuery, _onButtonPressed1, color3),
+                  SizedBox(width: mediaQuery.size.shortestSide*0.026,),
                 ],
               ),
             ),
@@ -192,16 +228,21 @@ class _MyCalcPageState extends State<MyCalcPage> {
               height: (mediaQuery.size.height - mediaQuery.padding.top) * 0.03,
             ),
             Container(
-//              margin: EdgeInsets.only(
-//                left: mediaQuery.size.width * 0.0425,
-//                right: mediaQuery.size.width * 0.0425,
-//              ),
+              margin: EdgeInsets.only(
+                right: mediaQuery.size.width * 0.01,
+                left: mediaQuery.size.width * 0.01,
+              ),
               child: Row(
                 children: <Widget>[
+                  SizedBox(width: mediaQuery.size.shortestSide*0.0265,),
                   ButtonType1("1", mediaQuery, _onButtonPressed, color2),
+                  SizedBox(width: mediaQuery.size.shortestSide*0.02,),
                   ButtonType1("2", mediaQuery, _onButtonPressed, color2),
+                  SizedBox(width: mediaQuery.size.shortestSide*0.02,),
                   ButtonType1("3", mediaQuery, _onButtonPressed, color2),
+                  SizedBox(width: mediaQuery.size.shortestSide*0.02,),
                   ButtonType1("+", mediaQuery, _onButtonPressed1, color3),
+                  SizedBox(width: mediaQuery.size.shortestSide*0.026,),
                 ],
               ),
             ),
@@ -209,14 +250,15 @@ class _MyCalcPageState extends State<MyCalcPage> {
               height: (mediaQuery.size.height - mediaQuery.padding.top) * 0.03,
             ),
             Container(
-//              margin: EdgeInsets.only(
-//                left: mediaQuery.size.width * 0.04,
-//                right: mediaQuery.size.width * 0.04,
-//              ),
+              margin: EdgeInsets.only(
+                right: mediaQuery.size.width * 0.01,
+                left: mediaQuery.size.width * 0.01,
+              ),
               child: Row(
                 children: <Widget>[
+                  SizedBox(width: mediaQuery.size.shortestSide*0.0265,),
                   Container(
-                    width: mediaQuery.size.width * 0.485,
+                    width: mediaQuery.size.width * 0.425,
                     child: RawMaterialButton(
                       child: Text(
                         '0',
@@ -232,12 +274,13 @@ class _MyCalcPageState extends State<MyCalcPage> {
                       },
                       elevation: 2.0,
                       fillColor: color2,
-                      padding: EdgeInsets.all(((mediaQuery.size.height - mediaQuery.padding.top) + mediaQuery.size.width)/16 * 0.25),
+                      padding: EdgeInsets.all(mediaQuery.size.shortestSide/20),
                       shape: RoundedRectangleBorder(
                           borderRadius:
-                              BorderRadius.circular(36.0 * curScaleFactor)),
+                          BorderRadius.circular(36.0 * curScaleFactor)),
                     ),
                   ),
+                  SizedBox(width: mediaQuery.size.shortestSide*0.038,),
                   RawMaterialButton(
                     child: Text(
                       '.',
@@ -248,8 +291,8 @@ class _MyCalcPageState extends State<MyCalcPage> {
                       setState(() {
                         if ('.'.allMatches(_ansStr).length == 0 ||
                             '.'
-                                    .allMatches(_ansStr, _ansStr.indexOf('÷'))
-                                    .length ==
+                                .allMatches(_ansStr, _ansStr.indexOf('÷'))
+                                .length ==
                                 0) {
                           _ansStr = _ansStr + '.';
                         }
@@ -257,9 +300,10 @@ class _MyCalcPageState extends State<MyCalcPage> {
                     },
                     elevation: 2.0,
                     fillColor: color2,
-                    padding: EdgeInsets.all(((mediaQuery.size.height - mediaQuery.padding.top) + mediaQuery.size.width)/16 * 0.25),
+                    padding: EdgeInsets.all(mediaQuery.size.shortestSide/20),
                     shape: CircleBorder(),
                   ),
+                  SizedBox(width: mediaQuery.size.shortestSide*0.026,),
                   RawMaterialButton(
                     child: Text(
                       '=',
@@ -295,9 +339,10 @@ class _MyCalcPageState extends State<MyCalcPage> {
                     },
                     elevation: 2.0,
                     fillColor: color3,
-                    padding: EdgeInsets.all(((mediaQuery.size.height - mediaQuery.padding.top) + mediaQuery.size.width)/16 * 0.25),
+                    padding: EdgeInsets.all(mediaQuery.size.shortestSide/20),
                     shape: CircleBorder(),
-                  )
+                  ),
+                  SizedBox(width: mediaQuery.size.shortestSide*0.026,),
                 ],
               ),
             ),
