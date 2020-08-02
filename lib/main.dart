@@ -85,7 +85,7 @@ class _MyCalcPageState extends State<MyCalcPage> {
                           style: TextStyle(
                               // Styling the text
                               fontSize: 60.0 * curScaleFactor,
-                              color: Colors.white),
+                              color: color3),
                           textAlign: TextAlign.right,
                         ),
                       ),
@@ -95,7 +95,9 @@ class _MyCalcPageState extends State<MyCalcPage> {
               ),
             ),
             SizedBox(
-              height: mediaQuery.size.height < 350 ? (mediaQuery.size.height - mediaQuery.padding.top) * 0.004 :(mediaQuery.size.height - mediaQuery.padding.top) * 0.02,
+              height: mediaQuery.size.height < 350
+                  ? (mediaQuery.size.height - mediaQuery.padding.top) * 0.004
+                  : (mediaQuery.size.height - mediaQuery.padding.top) * 0.02,
             ),
             Container(
               margin: EdgeInsets.only(
@@ -109,9 +111,9 @@ class _MyCalcPageState extends State<MyCalcPage> {
                     child: RawMaterialButton(
                       child: FittedBox(
                         child: Text(
-                          'AC',
+                          'C',
                           style: TextStyle(
-                              color: Colors.black,
+                              color: color3,
                               fontSize: mediaQuery.size.shortestSide < 350
                                   ? 28 * mediaQuery.textScaleFactor
                                   : 32 * mediaQuery.textScaleFactor),
@@ -123,20 +125,22 @@ class _MyCalcPageState extends State<MyCalcPage> {
                         });
                       },
                       elevation: 2.0,
-                      fillColor: color1,
+                      fillColor: Color(0xff222327),
                       padding:
                           EdgeInsets.all(mediaQuery.size.shortestSide / 20),
                       shape: CircleBorder(),
                     ),
                   ),
+                  ButtonType1("÷", mediaQuery, _onButtonPressed1, color3,Colors.white),
+                  ButtonType1("×", mediaQuery, _onButtonPressed1, color3,Colors.white),
                   Flexible(
                     flex: 1,
                     child: RawMaterialButton(
                       child: FittedBox(
                         child: Text(
-                          '+/−',
+                          '±',
                           style: TextStyle(
-                              color: Colors.black,
+                              color: Colors.white,
                               fontSize: mediaQuery.size.shortestSide < 350
                                   ? 28 * mediaQuery.textScaleFactor
                                   : 32 * mediaQuery.textScaleFactor),
@@ -149,12 +153,109 @@ class _MyCalcPageState extends State<MyCalcPage> {
                         });
                       },
                       elevation: 2.0,
-                      fillColor: color1,
+                      fillColor: color3,
                       padding:
                           EdgeInsets.all(mediaQuery.size.shortestSide / 20),
                       shape: CircleBorder(),
                     ),
                   ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: mediaQuery.size.height < 350
+                  ? (mediaQuery.size.height - mediaQuery.padding.top) * 0.004
+                  : (mediaQuery.size.height - mediaQuery.padding.top) * 0.02,
+            ),
+            Container(
+              margin: EdgeInsets.only(
+                right: mediaQuery.size.width * 0.01,
+                left: mediaQuery.size.width * 0.01,
+              ),
+              child: Row(
+                children: <Widget>[
+                  ButtonType1("7", mediaQuery, _onButtonPressed, color4,color3),
+                  ButtonType1("8", mediaQuery, _onButtonPressed, color4,color3),
+                  ButtonType1("9", mediaQuery, _onButtonPressed, color4,color3),
+                  ButtonType1("+", mediaQuery, _onButtonPressed1, color3, Colors.white),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: mediaQuery.size.height < 350
+                  ? (mediaQuery.size.height - mediaQuery.padding.top) * 0.004
+                  : (mediaQuery.size.height - mediaQuery.padding.top) * 0.02,
+            ),
+            Container(
+              margin: EdgeInsets.only(
+                right: mediaQuery.size.width * 0.01,
+                left: mediaQuery.size.width * 0.01,
+              ),
+              child: Row(
+                children: <Widget>[
+                  ButtonType1("4", mediaQuery, _onButtonPressed, color4,color3),
+                  ButtonType1("5", mediaQuery, _onButtonPressed, color4,color3),
+                  ButtonType1("6", mediaQuery, _onButtonPressed, color4,color3),
+                  ButtonType1("−", mediaQuery, _onButtonPressed1, color3, Colors.white),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: mediaQuery.size.height < 350
+                  ? (mediaQuery.size.height - mediaQuery.padding.top) * 0.004
+                  : (mediaQuery.size.height - mediaQuery.padding.top) * 0.02,
+            ),
+            Container(
+              margin: EdgeInsets.only(
+                right: mediaQuery.size.width * 0.01,
+                left: mediaQuery.size.width * 0.01,
+              ),
+              child: Row(
+                children: <Widget>[
+                  ButtonType1("1", mediaQuery, _onButtonPressed, color4, color3),
+                  ButtonType1("2", mediaQuery, _onButtonPressed, color4,color3),
+                  ButtonType1("3", mediaQuery, _onButtonPressed, color4,color3),
+                  Flexible(
+                    flex: 1,
+                    child: RawMaterialButton(
+                      child: FittedBox(
+                        child: Text(
+                          '±',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: mediaQuery.size.shortestSide < 350
+                                  ? 28 * mediaQuery.textScaleFactor
+                                  : 32 * mediaQuery.textScaleFactor),
+                        ),
+                      ),
+                      onPressed: () {
+                        var val = -1 * (int.parse(_ansStr));
+                        setState(() {
+                          _ansStr = val.toString();
+                        });
+                      },
+                      elevation: 2.0,
+                      fillColor: color3,
+                      padding:
+                          EdgeInsets.all(mediaQuery.size.shortestSide / 20),
+                      shape: CircleBorder(),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: mediaQuery.size.height < 350
+                  ? (mediaQuery.size.height - mediaQuery.padding.top) * 0.004
+                  : (mediaQuery.size.height - mediaQuery.padding.top) * 0.02,
+            ),
+            Container(
+              margin: EdgeInsets.only(
+                right: mediaQuery.size.width * 0.01,
+                left: mediaQuery.size.width * 0.01,
+              ),
+              child: Row(
+                children: <Widget>[
                   Flexible(
                     flex: 1,
                     child: RawMaterialButton(
@@ -162,7 +263,7 @@ class _MyCalcPageState extends State<MyCalcPage> {
                         child: Text(
                           '%',
                           style: TextStyle(
-                              color: Colors.black,
+                              color: color3,
                               fontSize: mediaQuery.size.shortestSide < 350
                                   ? 28 * mediaQuery.textScaleFactor
                                   : 32 * mediaQuery.textScaleFactor),
@@ -196,105 +297,34 @@ class _MyCalcPageState extends State<MyCalcPage> {
                         });
                       },
                       elevation: 2.0,
-                      fillColor: color1,
+                      fillColor: color4,
                       padding:
                           EdgeInsets.all(mediaQuery.size.shortestSide / 20),
                       shape: CircleBorder(),
                     ),
                   ),
-                  ButtonType1("÷", mediaQuery, _onButtonPressed1, color3),
-                ],
-              ),
-            ),
-            SizedBox(
-              height: mediaQuery.size.height < 350 ? (mediaQuery.size.height - mediaQuery.padding.top) * 0.004 :(mediaQuery.size.height - mediaQuery.padding.top) * 0.02,
-            ),
-            Container(
-              margin: EdgeInsets.only(
-                right: mediaQuery.size.width * 0.01,
-                left: mediaQuery.size.width * 0.01,
-              ),
-              child: Row(
-                children: <Widget>[
-                  ButtonType1("7", mediaQuery, _onButtonPressed, color2),
-                  ButtonType1("8", mediaQuery, _onButtonPressed, color2),
-                  ButtonType1("9", mediaQuery, _onButtonPressed, color2),
-                  ButtonType1("×", mediaQuery, _onButtonPressed1, color3),
-                ],
-              ),
-            ),
-            SizedBox(
-              height: mediaQuery.size.height < 350 ? (mediaQuery.size.height - mediaQuery.padding.top) * 0.004 :(mediaQuery.size.height - mediaQuery.padding.top) * 0.02,
-            ),
-            Container(
-              margin: EdgeInsets.only(
-                right: mediaQuery.size.width * 0.01,
-                left: mediaQuery.size.width * 0.01,
-              ),
-              child: Row(
-                children: <Widget>[
-                  ButtonType1("4", mediaQuery, _onButtonPressed, color2),
-                  ButtonType1("5", mediaQuery, _onButtonPressed, color2),
-                  ButtonType1("6", mediaQuery, _onButtonPressed, color2),
-                  ButtonType1("−", mediaQuery, _onButtonPressed1, color3),
-                ],
-              ),
-            ),
-            SizedBox(
-              height: mediaQuery.size.height < 350 ? (mediaQuery.size.height - mediaQuery.padding.top) * 0.004 :(mediaQuery.size.height - mediaQuery.padding.top) * 0.02,
-            ),
-            Container(
-              margin: EdgeInsets.only(
-                right: mediaQuery.size.width * 0.01,
-                left: mediaQuery.size.width * 0.01,
-              ),
-              child: Row(
-                children: <Widget>[
-                  ButtonType1("1", mediaQuery, _onButtonPressed, color2),
-                  ButtonType1("2", mediaQuery, _onButtonPressed, color2),
-                  ButtonType1("3", mediaQuery, _onButtonPressed, color2),
-                  ButtonType1("+", mediaQuery, _onButtonPressed1, color3),
-                ],
-              ),
-            ),
-            SizedBox(
-              height: mediaQuery.size.height < 350 ? (mediaQuery.size.height - mediaQuery.padding.top) * 0.004 :(mediaQuery.size.height - mediaQuery.padding.top) * 0.02,
-            ),
-            Container(
-              margin: EdgeInsets.only(
-                right: mediaQuery.size.width * 0.01,
-                left: mediaQuery.size.width * 0.01,
-              ),
-              child: Row(
-                children: <Widget>[
-                  Container(
-                    width: mediaQuery.size.width * 0.425,
-                    child: Expanded(
-                      flex: 3,
-                      child: RawMaterialButton(
-                        child: FittedBox(
-                          child: Text(
-                            '0',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 28 * curScaleFactor),
-                          ),
+                  Flexible(
+                    flex: 1,
+                    child: RawMaterialButton(
+                      child: FittedBox(
+                        child: Text(
+                          '0',
+                          style: TextStyle(
+                              color: color3, fontSize: 34 * curScaleFactor),
                         ),
-                        onPressed: () {
-                          setState(() {
-                            if (_ansStr != "0") {
-                              _ansStr = _ansStr + "0";
-                            }
-                          });
-                        },
-                        elevation: 2.0,
-                        fillColor: color2,
-                        padding:
-                            EdgeInsets.all(mediaQuery.size.shortestSide / 20),
-                        shape: RoundedRectangleBorder(
-                            borderRadius:
-                                BorderRadius.circular(36.0 * curScaleFactor)),
                       ),
+                      onPressed: () {
+                        setState(() {
+                          if (_ansStr != "0") {
+                            _ansStr = _ansStr + "0";
+                          }
+                        });
+                      },
+                      elevation: 2.0,
+                      fillColor: color4,
+                      padding:
+                          EdgeInsets.all(mediaQuery.size.shortestSide / 20),
+                      shape: CircleBorder(),
                     ),
                   ),
                   Flexible(
@@ -304,8 +334,7 @@ class _MyCalcPageState extends State<MyCalcPage> {
                         child: Text(
                           '.',
                           style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 34 * curScaleFactor),
+                              color: color3, fontSize: 34 * curScaleFactor),
                         ),
                       ),
                       onPressed: () {
@@ -320,7 +349,7 @@ class _MyCalcPageState extends State<MyCalcPage> {
                         });
                       },
                       elevation: 2.0,
-                      fillColor: color2,
+                      fillColor: color4,
                       padding:
                           EdgeInsets.all(mediaQuery.size.shortestSide / 20),
                       shape: CircleBorder(),

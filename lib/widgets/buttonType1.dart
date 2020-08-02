@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+import '../constant_terms.dart';
 
 class ButtonType1 extends StatefulWidget {
   final String val;
   final MediaQueryData mediaQuery;
   final Function callBack;
-  final Color color;
+  final Color colorBg;
+  final Color colorText;
 
-  ButtonType1(this.val, this.mediaQuery, this.callBack, this.color);
+  ButtonType1(this.val, this.mediaQuery, this.callBack, this.colorBg,this.colorText);
 
   @override
   _ButtonType1State createState() => _ButtonType1State();
@@ -22,7 +24,7 @@ class _ButtonType1State extends State<ButtonType1> {
           child: Text(
             widget.val,
             style: TextStyle(
-                color: Colors.white,
+                color: widget.colorText,
                 fontSize: widget.mediaQuery.size.shortestSide < 350
                     ? 28 * widget.mediaQuery.textScaleFactor
                     : 32 * widget.mediaQuery.textScaleFactor),
@@ -30,7 +32,7 @@ class _ButtonType1State extends State<ButtonType1> {
         ),
         onPressed: () => widget.callBack(widget.val),
         elevation: 2.0,
-        fillColor: widget.color,
+        fillColor: widget.colorBg,
         padding: EdgeInsets.all(widget.mediaQuery.size.shortestSide / 20),
         shape: CircleBorder(),
       ),
