@@ -15,7 +15,6 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Calculator',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: MyCalcPage(),
@@ -29,20 +28,66 @@ class MyCalcPage extends StatefulWidget {
 }
 
 class _MyCalcPageState extends State<MyCalcPage> {
-  var _ansStr = '0';
+  var _output = '0';
+  String _out = '0';
+  double _num1 = 0.0;
+  double _num2 = 0.0;
+  String _operand = "";
   List<String> _num;
+
+  buttonPressed(String btnVal) {
+    if (btnVal == 'C') {
+      _out = '0';
+      _num1 = 0.0;
+      _num2 = 0.0;
+      _operand = "";
+    } else if (btnVal == '+' ||
+        btnVal == '-' ||
+        btnVal == '×' ||
+        btnVal == '÷') {
+      _num1 = double.parse(_output);
+      _operand = btnVal;
+      _out = "0";
+      _output = _output + btnVal;
+    } else if (btnVal == '.') {
+      if(_out.contains('.')) {
+        return;
+      } else {
+        _out = _out + btnVal;
+      }
+    } else if (btnVal == '=') {
+      _num2 = double.parse(_output);
+      if(_operand == '+') {
+        _out = (_num1 + _num2).toString();
+      } else if(_operand == '-') {
+        _out = (_num1 - _num2).toString();
+      } else if(_operand == '×') {
+        _out = (_num1 * _num2).toString();
+      } else if(_operand == '÷') {
+        _out = (_num1 / _num2).toString();
+      }
+      _num1 = 0.0;
+      _num2 = 0.0;
+    } else {
+      _out = _out + btnVal;
+    }
+
+    setState(() {
+      _output = double.parse(_out).toStringAsPrecision(16);
+    });
+  }
 
   void _onButtonPressed(String btnStr) {
     setState(() {
       if (['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'].contains(btnStr))
-        _ansStr = (_ansStr == '0') ? btnStr : _ansStr + btnStr;
+        _output = (_output == '0') ? btnStr : _output + btnStr;
     });
   }
 
   void _onButtonPressed1(String btnStr) {
     setState(() {
       if (['÷', '×', '−', '+'].contains(btnStr))
-        _ansStr = (_ansStr.contains(btnStr)) ? _ansStr : _ansStr + btnStr;
+        _output = (_output.contains(btnStr)) ? _output : _output + btnStr;
     });
   }
 
@@ -81,7 +126,7 @@ class _MyCalcPageState extends State<MyCalcPage> {
                     child: Expanded(
                       child: FittedBox(
                         child: Text(
-                          _ansStr,
+                          _output,
                           style: TextStyle(
                               // Styling the text
                               fontSize: 60.0 * curScaleFactor,
@@ -121,7 +166,7 @@ class _MyCalcPageState extends State<MyCalcPage> {
                       ),
                       onPressed: () {
                         setState(() {
-                          _ansStr = "0";
+                          _output = "0";
                         });
                       },
                       elevation: 2.0,
@@ -149,7 +194,7 @@ class _MyCalcPageState extends State<MyCalcPage> {
                       ),
                       onPressed: () {
                         setState(() {
-                          _ansStr = _ansStr.substring(0, _ansStr.length - 1);
+                          _output = _output.substring(0, _output.length - 1);
                         });
                       },
                       elevation: 2.0,
@@ -240,9 +285,9 @@ class _MyCalcPageState extends State<MyCalcPage> {
                         ),
                       ),
                       onPressed: () {
-                        var val = -1 * (double.parse(_ansStr));
+                        var val = -1 * (double.parse(_output));
                         setState(() {
-                          _ansStr = val.toString();
+                          _output = val.toString();
                         });
                       },
                       elevation: 2.0,
@@ -281,30 +326,30 @@ class _MyCalcPageState extends State<MyCalcPage> {
                         ),
                       ),
                       onPressed: () {
-                        if (_ansStr.contains('÷')) {
-                          _num = _ansStr.split('÷');
-                          _ansStr =
+                        if (_output.contains('÷')) {
+                          _num = _output.split('÷');
+                          _output =
                               (double.parse(_num[0]) / double.parse(_num[1]))
                                   .toString();
-                        } else if (_ansStr.contains('×')) {
-                          _num = _ansStr.split('×');
-                          _ansStr =
+                        } else if (_output.contains('×')) {
+                          _num = _output.split('×');
+                          _output =
                               (double.parse(_num[0]) * double.parse(_num[1]))
                                   .toString();
-                        } else if (_ansStr.contains('−')) {
-                          _num = _ansStr.split('−');
-                          _ansStr =
+                        } else if (_output.contains('−')) {
+                          _num = _output.split('−');
+                          _output =
                               (double.parse(_num[0]) - double.parse(_num[1]))
                                   .toString();
-                        } else if (_ansStr.contains('+')) {
-                          _num = _ansStr.split('+');
-                          _ansStr =
+                        } else if (_output.contains('+')) {
+                          _num = _output.split('+');
+                          _output =
                               (double.parse(_num[0]) + double.parse(_num[1]))
                                   .toString();
                         }
-                        var val = (double.parse(_ansStr)) / 100;
+                        var val = (double.parse(_output)) / 100;
                         setState(() {
-                          _ansStr = val.toString();
+                          _output = val.toString();
                         });
                       },
                       elevation: 2.0,
@@ -326,8 +371,8 @@ class _MyCalcPageState extends State<MyCalcPage> {
                       ),
                       onPressed: () {
                         setState(() {
-                          if (_ansStr != "0") {
-                            _ansStr = _ansStr + "0";
+                          if (_output != "0") {
+                            _output = _output + "0";
                           }
                         });
                       },
@@ -350,12 +395,24 @@ class _MyCalcPageState extends State<MyCalcPage> {
                       ),
                       onPressed: () {
                         setState(() {
-                          if ('.'.allMatches(_ansStr).length == 0 ||
+                          if ('.'.allMatches(_output).length == 0 ||
                               '.'
-                                      .allMatches(_ansStr, _ansStr.indexOf('÷'))
+                                      .allMatches(_output, _output.indexOf('÷'))
+                                      .length ==
+                                  0 ||
+                              '.'
+                                      .allMatches(_output, _output.indexOf('×'))
+                                      .length ==
+                                  0 ||
+                              '.'
+                                      .allMatches(_output, _output.indexOf('+'))
+                                      .length ==
+                                  0 ||
+                              '.'
+                                      .allMatches(_output, _output.indexOf('−'))
                                       .length ==
                                   0) {
-                            _ansStr = _ansStr + '.';
+                            _output = _output + '.';
                           }
                         });
                       },
@@ -381,28 +438,28 @@ class _MyCalcPageState extends State<MyCalcPage> {
                       ),
                       onPressed: () {
                         setState(() {
-                          if (_ansStr.contains('÷')) {
-                            _num = _ansStr.split('÷');
-                            _ansStr =
+                          if (_output.contains('÷')) {
+                            _num = _output.split('÷');
+                            _output =
                                 (double.parse(_num[0]) / double.parse(_num[1]))
                                     .toString();
-                          } else if (_ansStr.contains('×')) {
-                            _num = _ansStr.split('×');
-                            _ansStr =
+                          } else if (_output.contains('×')) {
+                            _num = _output.split('×');
+                            _output =
                                 (double.parse(_num[0]) * double.parse(_num[1]))
                                     .toString();
-                          } else if (_ansStr.contains('−')) {
-                            _num = _ansStr.split('−');
-                            _ansStr =
+                          } else if (_output.contains('−')) {
+                            _num = _output.split('−');
+                            _output =
                                 (double.parse(_num[0]) - double.parse(_num[1]))
                                     .toString();
-                          } else if (_ansStr.contains('+')) {
-                            _num = _ansStr.split('+');
-                            _ansStr =
+                          } else if (_output.contains('+')) {
+                            _num = _output.split('+');
+                            _output =
                                 (double.parse(_num[0]) + double.parse(_num[1]))
                                     .toString();
                           } else {
-                            _ansStr = _ansStr;
+                            _output = _output;
                           }
                         });
                       },
