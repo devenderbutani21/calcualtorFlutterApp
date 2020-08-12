@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'constant_terms.dart';
-import 'widgets/buttonType1.dart';
 
 void main() {
   runApp(MyApp());
@@ -41,6 +40,21 @@ class _MyCalcPageState extends State<MyCalcPage> {
       _num1 = 0.0;
       _num2 = 0.0;
       _operand = "";
+    } else if (btnVal == '%') {
+      _out = (double.parse(_output) / 100).toString();
+      _num1 = 0.0;
+      _num2 = 0.0;
+      _operand = "";
+    } else if (btnVal == '±') {
+      _out = (double.parse(_output) * -1).toString();
+      _num1 = 0.0;
+      _num2 = 0.0;
+      _operand = "";
+    } else if (btnVal == '⌫') {
+      _out = _output.substring(0, _output.length - 2);
+      _num1 = 0.0;
+      _num2 = 0.0;
+      _operand = "";
     } else if (btnVal == '+' ||
         btnVal == '-' ||
         btnVal == '×' ||
@@ -50,20 +64,20 @@ class _MyCalcPageState extends State<MyCalcPage> {
       _out = "0";
       _output = _output + btnVal;
     } else if (btnVal == '.') {
-      if(_out.contains('.')) {
+      if (_out.contains('.')) {
         return;
       } else {
         _out = _out + btnVal;
       }
     } else if (btnVal == '=') {
       _num2 = double.parse(_output);
-      if(_operand == '+') {
+      if (_operand == '+') {
         _out = (_num1 + _num2).toString();
-      } else if(_operand == '-') {
+      } else if (_operand == '-') {
         _out = (_num1 - _num2).toString();
-      } else if(_operand == '×') {
+      } else if (_operand == '×') {
         _out = (_num1 * _num2).toString();
-      } else if(_operand == '÷') {
+      } else if (_operand == '÷') {
         _out = (_num1 / _num2).toString();
       }
       _num1 = 0.0;
@@ -73,22 +87,33 @@ class _MyCalcPageState extends State<MyCalcPage> {
     }
 
     setState(() {
-      _output = double.parse(_out).toStringAsPrecision(16);
+      _output = double.parse(_out).toString();
     });
   }
 
-  void _onButtonPressed(String btnStr) {
-    setState(() {
-      if (['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'].contains(btnStr))
-        _output = (_output == '0') ? btnStr : _output + btnStr;
-    });
-  }
-
-  void _onButtonPressed1(String btnStr) {
-    setState(() {
-      if (['÷', '×', '−', '+'].contains(btnStr))
-        _output = (_output.contains(btnStr)) ? _output : _output + btnStr;
-    });
+  Widget buildButton(String buttonVal, MediaQueryData mediaQuery, Color colorBg,
+      Color colorText) {
+    return Expanded(
+      child: Container(
+        child: RawMaterialButton(
+          child: FittedBox(
+            child: Text(
+              buttonVal,
+              style: TextStyle(
+                  color: colorText,
+                  fontSize: mediaQuery.size.shortestSide < 350
+                      ? 28 * mediaQuery.textScaleFactor
+                      : 32 * mediaQuery.textScaleFactor),
+            ),
+          ),
+          onPressed: () => buttonPressed(buttonVal),
+          elevation: 2.0,
+          fillColor: colorBg,
+          padding: EdgeInsets.all(mediaQuery.size.shortestSide / 20),
+          shape: CircleBorder(),
+        ),
+      ),
+    );
   }
 
   @override
@@ -151,59 +176,10 @@ class _MyCalcPageState extends State<MyCalcPage> {
               ),
               child: Row(
                 children: <Widget>[
-                  Flexible(
-                    flex: 1,
-                    child: RawMaterialButton(
-                      child: FittedBox(
-                        child: Text(
-                          'C',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: mediaQuery.size.shortestSide < 350
-                                  ? 28 * mediaQuery.textScaleFactor
-                                  : 32 * mediaQuery.textScaleFactor),
-                        ),
-                      ),
-                      onPressed: () {
-                        setState(() {
-                          _output = "0";
-                        });
-                      },
-                      elevation: 2.0,
-                      fillColor: color3,
-                      padding:
-                          EdgeInsets.all(mediaQuery.size.shortestSide / 20),
-                      shape: CircleBorder(),
-                    ),
-                  ),
-                  ButtonType1(
-                      "÷", mediaQuery, _onButtonPressed1, color3, Colors.white),
-                  ButtonType1(
-                      "×", mediaQuery, _onButtonPressed1, color3, Colors.white),
-                  Flexible(
-                    flex: 1,
-                    child: RawMaterialButton(
-                      child: FittedBox(
-                        child: Icon(
-                          Icons.backspace,
-                          color: Colors.white,
-                          size: mediaQuery.size.shortestSide < 350
-                              ? 28 * mediaQuery.textScaleFactor
-                              : 36 * mediaQuery.textScaleFactor,
-                        ),
-                      ),
-                      onPressed: () {
-                        setState(() {
-                          _output = _output.substring(0, _output.length - 1);
-                        });
-                      },
-                      elevation: 2.0,
-                      fillColor: color3,
-                      padding:
-                          EdgeInsets.all(mediaQuery.size.shortestSide / 20),
-                      shape: CircleBorder(),
-                    ),
-                  ),
+                  buildButton('C', mediaQuery, color3, color1),
+                  buildButton('÷', mediaQuery, color3, color1),
+                  buildButton('×', mediaQuery, color3, color1),
+                  buildButton('⌫', mediaQuery, color3, color1),
                 ],
               ),
             ),
@@ -219,14 +195,10 @@ class _MyCalcPageState extends State<MyCalcPage> {
               ),
               child: Row(
                 children: <Widget>[
-                  ButtonType1(
-                      "7", mediaQuery, _onButtonPressed, color4, color3),
-                  ButtonType1(
-                      "8", mediaQuery, _onButtonPressed, color4, color3),
-                  ButtonType1(
-                      "9", mediaQuery, _onButtonPressed, color4, color3),
-                  ButtonType1(
-                      "+", mediaQuery, _onButtonPressed1, color3, Colors.white),
+                  buildButton('7', mediaQuery, color4, color3),
+                  buildButton('8', mediaQuery, color4, color3),
+                  buildButton('9', mediaQuery, color4, color3),
+                  buildButton('+', mediaQuery, color3, color1),
                 ],
               ),
             ),
@@ -242,14 +214,10 @@ class _MyCalcPageState extends State<MyCalcPage> {
               ),
               child: Row(
                 children: <Widget>[
-                  ButtonType1(
-                      "4", mediaQuery, _onButtonPressed, color4, color3),
-                  ButtonType1(
-                      "5", mediaQuery, _onButtonPressed, color4, color3),
-                  ButtonType1(
-                      "6", mediaQuery, _onButtonPressed, color4, color3),
-                  ButtonType1(
-                      "−", mediaQuery, _onButtonPressed1, color3, Colors.white),
+                  buildButton('4', mediaQuery, color4, color3),
+                  buildButton('5', mediaQuery, color4, color3),
+                  buildButton('6', mediaQuery, color4, color3),
+                  buildButton('−', mediaQuery, color3, color1),
                 ],
               ),
             ),
@@ -265,38 +233,10 @@ class _MyCalcPageState extends State<MyCalcPage> {
               ),
               child: Row(
                 children: <Widget>[
-                  ButtonType1(
-                      "1", mediaQuery, _onButtonPressed, color4, color3),
-                  ButtonType1(
-                      "2", mediaQuery, _onButtonPressed, color4, color3),
-                  ButtonType1(
-                      "3", mediaQuery, _onButtonPressed, color4, color3),
-                  Flexible(
-                    flex: 1,
-                    child: RawMaterialButton(
-                      child: FittedBox(
-                        child: Text(
-                          '±',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: mediaQuery.size.shortestSide < 350
-                                  ? 28 * mediaQuery.textScaleFactor
-                                  : 32 * mediaQuery.textScaleFactor),
-                        ),
-                      ),
-                      onPressed: () {
-                        var val = -1 * (double.parse(_output));
-                        setState(() {
-                          _output = val.toString();
-                        });
-                      },
-                      elevation: 2.0,
-                      fillColor: color3,
-                      padding:
-                          EdgeInsets.all(mediaQuery.size.shortestSide / 20),
-                      shape: CircleBorder(),
-                    ),
-                  ),
+                  buildButton('1', mediaQuery, color4, color3),
+                  buildButton('2', mediaQuery, color4, color3),
+                  buildButton('3', mediaQuery, color4, color3),
+                  buildButton('±', mediaQuery, color3, color1),
                 ],
               ),
             ),
@@ -312,164 +252,10 @@ class _MyCalcPageState extends State<MyCalcPage> {
               ),
               child: Row(
                 children: <Widget>[
-                  Flexible(
-                    flex: 1,
-                    child: RawMaterialButton(
-                      child: FittedBox(
-                        child: Text(
-                          '%',
-                          style: TextStyle(
-                              color: color3,
-                              fontSize: mediaQuery.size.shortestSide < 350
-                                  ? 28 * mediaQuery.textScaleFactor
-                                  : 32 * mediaQuery.textScaleFactor),
-                        ),
-                      ),
-                      onPressed: () {
-                        if (_output.contains('÷')) {
-                          _num = _output.split('÷');
-                          _output =
-                              (double.parse(_num[0]) / double.parse(_num[1]))
-                                  .toString();
-                        } else if (_output.contains('×')) {
-                          _num = _output.split('×');
-                          _output =
-                              (double.parse(_num[0]) * double.parse(_num[1]))
-                                  .toString();
-                        } else if (_output.contains('−')) {
-                          _num = _output.split('−');
-                          _output =
-                              (double.parse(_num[0]) - double.parse(_num[1]))
-                                  .toString();
-                        } else if (_output.contains('+')) {
-                          _num = _output.split('+');
-                          _output =
-                              (double.parse(_num[0]) + double.parse(_num[1]))
-                                  .toString();
-                        }
-                        var val = (double.parse(_output)) / 100;
-                        setState(() {
-                          _output = val.toString();
-                        });
-                      },
-                      elevation: 2.0,
-                      fillColor: color4,
-                      padding:
-                          EdgeInsets.all(mediaQuery.size.shortestSide / 20),
-                      shape: CircleBorder(),
-                    ),
-                  ),
-                  Flexible(
-                    flex: 1,
-                    child: RawMaterialButton(
-                      child: FittedBox(
-                        child: Text(
-                          '0',
-                          style: TextStyle(
-                              color: color3, fontSize: 34 * curScaleFactor),
-                        ),
-                      ),
-                      onPressed: () {
-                        setState(() {
-                          if (_output != "0") {
-                            _output = _output + "0";
-                          }
-                        });
-                      },
-                      elevation: 2.0,
-                      fillColor: color4,
-                      padding:
-                          EdgeInsets.all(mediaQuery.size.shortestSide / 20),
-                      shape: CircleBorder(),
-                    ),
-                  ),
-                  Flexible(
-                    flex: 1,
-                    child: RawMaterialButton(
-                      child: FittedBox(
-                        child: Text(
-                          '.',
-                          style: TextStyle(
-                              color: color3, fontSize: 34 * curScaleFactor),
-                        ),
-                      ),
-                      onPressed: () {
-                        setState(() {
-                          if ('.'.allMatches(_output).length == 0 ||
-                              '.'
-                                      .allMatches(_output, _output.indexOf('÷'))
-                                      .length ==
-                                  0 ||
-                              '.'
-                                      .allMatches(_output, _output.indexOf('×'))
-                                      .length ==
-                                  0 ||
-                              '.'
-                                      .allMatches(_output, _output.indexOf('+'))
-                                      .length ==
-                                  0 ||
-                              '.'
-                                      .allMatches(_output, _output.indexOf('−'))
-                                      .length ==
-                                  0) {
-                            _output = _output + '.';
-                          }
-                        });
-                      },
-                      elevation: 2.0,
-                      fillColor: color4,
-                      padding:
-                          EdgeInsets.all(mediaQuery.size.shortestSide / 20),
-                      shape: CircleBorder(),
-                    ),
-                  ),
-                  Flexible(
-                    flex: 1,
-                    child: RawMaterialButton(
-                      child: FittedBox(
-                        child: Text(
-                          '=',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: mediaQuery.size.shortestSide < 350
-                                  ? 28 * mediaQuery.textScaleFactor
-                                  : 32 * mediaQuery.textScaleFactor),
-                        ),
-                      ),
-                      onPressed: () {
-                        setState(() {
-                          if (_output.contains('÷')) {
-                            _num = _output.split('÷');
-                            _output =
-                                (double.parse(_num[0]) / double.parse(_num[1]))
-                                    .toString();
-                          } else if (_output.contains('×')) {
-                            _num = _output.split('×');
-                            _output =
-                                (double.parse(_num[0]) * double.parse(_num[1]))
-                                    .toString();
-                          } else if (_output.contains('−')) {
-                            _num = _output.split('−');
-                            _output =
-                                (double.parse(_num[0]) - double.parse(_num[1]))
-                                    .toString();
-                          } else if (_output.contains('+')) {
-                            _num = _output.split('+');
-                            _output =
-                                (double.parse(_num[0]) + double.parse(_num[1]))
-                                    .toString();
-                          } else {
-                            _output = _output;
-                          }
-                        });
-                      },
-                      elevation: 2.0,
-                      fillColor: color3,
-                      padding:
-                          EdgeInsets.all(mediaQuery.size.shortestSide / 20),
-                      shape: CircleBorder(),
-                    ),
-                  ),
+                  buildButton('%', mediaQuery, color4, color3),
+                  buildButton('0', mediaQuery, color4, color3),
+                  buildButton('.', mediaQuery, color4, color3),
+                  buildButton('=', mediaQuery, color3, color1),
                 ],
               ),
             ),
