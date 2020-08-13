@@ -32,7 +32,6 @@ class _MyCalcPageState extends State<MyCalcPage> {
   double _num1 = 0.0;
   double _num2 = 0.0;
   String _operand = "";
-  List<String> _num;
 
   buttonPressed(String btnVal) {
     if (btnVal == 'C') {
@@ -51,7 +50,7 @@ class _MyCalcPageState extends State<MyCalcPage> {
       _num2 = 0.0;
       _operand = "";
     } else if (btnVal == '⌫') {
-      _out = _output.substring(0, _output.length - 2);
+      _out = _output.substring(0, _output.length - 1);
       _num1 = 0.0;
       _num2 = 0.0;
       _operand = "";
@@ -87,7 +86,11 @@ class _MyCalcPageState extends State<MyCalcPage> {
     }
 
     setState(() {
-      _output = double.parse(_out).toString();
+      if (!_out.contains('.')) {
+        _output = int.parse(_out).toString();
+      } else {
+        _output = double.parse(_out).toString();
+      }
     });
   }
 
@@ -96,21 +99,23 @@ class _MyCalcPageState extends State<MyCalcPage> {
     return Expanded(
       child: Container(
         child: RawMaterialButton(
-          child: FittedBox(
-            child: Text(
-              buttonVal,
-              style: TextStyle(
-                  color: colorText,
-                  fontSize: mediaQuery.size.shortestSide < 350
-                      ? 28 * mediaQuery.textScaleFactor
-                      : 32 * mediaQuery.textScaleFactor),
-            ),
-          ),
           onPressed: () => buttonPressed(buttonVal),
           elevation: 2.0,
           fillColor: colorBg,
           padding: EdgeInsets.all(mediaQuery.size.shortestSide / 20),
           shape: CircleBorder(),
+          child: Text(
+            buttonVal,
+            style: TextStyle(
+                color: colorText,
+                fontSize: buttonVal == '⌫'
+                    ? mediaQuery.size.shortestSide < 350
+                        ? 24 * mediaQuery.textScaleFactor
+                        : 28 * mediaQuery.textScaleFactor
+                    : mediaQuery.size.shortestSide < 350
+                        ? 28 * mediaQuery.textScaleFactor
+                        : 32 * mediaQuery.textScaleFactor),
+          ),
         ),
       ),
     );
@@ -140,8 +145,10 @@ class _MyCalcPageState extends State<MyCalcPage> {
                     // Display Container
                     constraints: BoxConstraints.expand(
                       // Creating a boxed container
-                      height:
-                          (mediaQuery.size.height - mediaQuery.padding.top) *
+                      height: mediaQuery.size.height < 400
+                          ? (mediaQuery.size.height - mediaQuery.padding.top) *
+                              0.175
+                          : (mediaQuery.size.height - mediaQuery.padding.top) *
                               0.25,
                     ),
                     alignment: Alignment.bottomRight,
@@ -165,7 +172,7 @@ class _MyCalcPageState extends State<MyCalcPage> {
               ),
             ),
             SizedBox(
-              height: mediaQuery.size.height < 350
+              height: mediaQuery.size.height < 400
                   ? (mediaQuery.size.height - mediaQuery.padding.top) * 0.004
                   : (mediaQuery.size.height - mediaQuery.padding.top) * 0.02,
             ),
@@ -203,7 +210,7 @@ class _MyCalcPageState extends State<MyCalcPage> {
               ),
             ),
             SizedBox(
-              height: mediaQuery.size.height < 350
+              height: mediaQuery.size.height < 400
                   ? (mediaQuery.size.height - mediaQuery.padding.top) * 0.004
                   : (mediaQuery.size.height - mediaQuery.padding.top) * 0.02,
             ),
@@ -222,7 +229,7 @@ class _MyCalcPageState extends State<MyCalcPage> {
               ),
             ),
             SizedBox(
-              height: mediaQuery.size.height < 350
+              height: mediaQuery.size.height < 400
                   ? (mediaQuery.size.height - mediaQuery.padding.top) * 0.004
                   : (mediaQuery.size.height - mediaQuery.padding.top) * 0.02,
             ),
@@ -241,7 +248,7 @@ class _MyCalcPageState extends State<MyCalcPage> {
               ),
             ),
             SizedBox(
-              height: mediaQuery.size.height < 350
+              height: mediaQuery.size.height < 400
                   ? (mediaQuery.size.height - mediaQuery.padding.top) * 0.004
                   : (mediaQuery.size.height - mediaQuery.padding.top) * 0.02,
             ),
