@@ -104,17 +104,19 @@ class _MyCalcPageState extends State<MyCalcPage> {
           fillColor: colorBg,
           padding: EdgeInsets.all(mediaQuery.size.shortestSide / 20),
           shape: CircleBorder(),
-          child: Text(
-            buttonVal,
-            style: TextStyle(
-                color: colorText,
-                fontSize: buttonVal == '⌫'
-                    ? mediaQuery.size.shortestSide < 350
-                        ? 24 * mediaQuery.textScaleFactor
-                        : 28 * mediaQuery.textScaleFactor
-                    : mediaQuery.size.shortestSide < 350
-                        ? 28 * mediaQuery.textScaleFactor
-                        : 32 * mediaQuery.textScaleFactor),
+          child: FittedBox(
+            child: Text(
+              buttonVal,
+              style: TextStyle(
+                  color: colorText,
+                  fontSize: buttonVal == '⌫'
+                      ? mediaQuery.size.shortestSide < 350
+                          ? 24 * mediaQuery.textScaleFactor
+                          : 28 * mediaQuery.textScaleFactor
+                      : mediaQuery.size.shortestSide < 350
+                          ? 28 * mediaQuery.textScaleFactor
+                          : 32 * mediaQuery.textScaleFactor),
+            ),
           ),
         ),
       ),
